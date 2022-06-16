@@ -1,0 +1,19 @@
+/* .myStylesInFooter {
+    display: flex;
+    justify-content: space-between;
+} */
+
+.main-footer{
+    background-color: #ffffff;
+    max-width: 100vw;
+    font-family: Roboto;
+    font-size: 20px;
+}
+.lists-styles li a{
+    margin-left: 1rem;
+    text-decoration: none;
+    color: black;
+}
+.footerColumns {
+    color: #00a0e1;
+}
