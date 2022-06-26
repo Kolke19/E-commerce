@@ -1,16 +1,14 @@
 .header-container {
-    /* width: 100%; */
+    width: 100%;
     background-color: #000000;
     color: #00a0e1;
     height: auto;
     min-height: 4rem;
     font-size: 15px;
+    position: fixed;
 }
 
-.button-styles {
+.button-styles {    
     background-color: #00a0e1 !important;
 
 }
-/* .last-row-container {
-    padding-right: 0.5rem !important ;
-} */

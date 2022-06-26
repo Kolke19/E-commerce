@@ -8,17 +8,24 @@ import './Apps.css';
 
 //COMPONENTS
 import Layout from "./components/layout/Layout";
+import Home from './pages/Home';
+import Register from './pages/Register';
+//backend context 
+import AuthState from './context/AuthState';
 // import { Form } from 'react-bootstrap';
 // import Footer from './components/Footer';
 
 function App() {
   return (
     <>
-    <Layout>
-      <main>
-    <h1>SOY EL MAIN QUE VA A TODAS PARTES</h1>
-      </main>
-    </Layout>
+    <AuthState>
+        <Layout>
+            <Routes>
+              <Route path='/' element={<Home/>}/>
+              <Route path='/register' element={<Register/>}/>
+           </Routes>
+         </Layout>
+    </AuthState>
     </>
     
   );
