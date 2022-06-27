@@ -8,13 +8,14 @@ const Register = () => {
 const { registerUser } = useContext(AuthContext);
 
 const [form, setForm] = useState({
-  name:"",
+  username:"",
+  lastname:"",
   email:"",
   password:"",
   passwordConfirm:""
 });
 
-const {name, email, password, passwordConfirm} = form;
+const {username, lastname, email, password, passwordConfirm} = form;
 
 const handleOnChange = e => setForm ({ ...form, [e.target.name]: e.target.value});
 
@@ -34,8 +35,17 @@ const handleOnSubmit = e => {
       <label>Nombre</label>
       <input 
       type="text"
-      name='name'
-      value={name}
+      name='username'
+      value={username}
+      onChange={handleOnChange}
+      />
+      </div>
+      <div>
+      <label>apellido</label>
+      <input 
+      type="text"
+      name='lastname'
+      value={lastname}
       onChange={handleOnChange}
       />
       </div>

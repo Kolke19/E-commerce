@@ -28,7 +28,7 @@ const AuthState = ({children}) => {
 
 const registerUser = async (data) => {
     try {
-        const response = await clientAxios.post('http://localhost:7500/api/v1/auth/signup', data)
+        const response = await clientAxios.post('http://localhost:4000/api/v1/auth/signup', data)
         console.log(response)
     } catch (error) {
         console.log(error)
