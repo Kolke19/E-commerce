@@ -1,10 +1,11 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
-import {useState} from 'react'
-import { Button } from 'react-bootstrap'
+import React from 'react';
+import {Link} from 'react-router-dom';
+import {useState, useContext} from 'react';
+import { Button } from 'react-bootstrap';
+import AuthContext from '../context/AuthContext';
 
 const Register = () => {
-
+const { registerUser } = useContext(AuthContext);
 
 const [form, setForm] = useState({
   name:"",
@@ -19,6 +20,7 @@ const handleOnChange = e => setForm ({ ...form, [e.target.name]: e.target.value}
 
 const handleOnSubmit = e => {
     e.preventDefault(); 
+    registerUser(form);
     console.log("funciona", form)
 }
 
