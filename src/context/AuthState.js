@@ -29,6 +29,8 @@ const AuthState = ({children}) => {
 const registerUser = async (data) => {
     try {
         const response = await clientAxios.post('http://localhost:4000/api/v1/auth/signup', data)
+        dispatch({type: REGISTER_SUCCES, payload: response.data});
+        localStorage.setItem('token', response.data.token);
         console.log(response)
     } catch (error) {
         console.log(error)

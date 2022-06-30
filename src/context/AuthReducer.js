@@ -10,6 +10,13 @@ import {
 
 const authReducer = (state, action) => {
     switch(action.type) {
+        case REGISTER_SUCCES:
+            return {
+                ...state,
+                isAuth: true,
+                user: action.payload.data.user,
+                loading: false
+            }
         default:
             return state;
     }
