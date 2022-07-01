@@ -10,7 +10,6 @@ class ValidationServices {
     }
     validarSelectBoolean = input => (input.value === 'true' || input.value === 'false') ? true : false;
     validarEmail = input => {
-        console.log("usando la validacion")
         const regEx = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3,4})+$/;
         return regEx.test(input.value) ? true : false;
     }

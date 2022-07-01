@@ -5,14 +5,15 @@ import { Button } from 'react-bootstrap';
 import AuthContext from '../context/AuthContext';
 import "../css/userRegister.css"
 //validaciones
-// import ValidationServices from '../utils/ValidationServices.js';
+import ValidationServices from '../utils/ValidationServices.js';
 
 
 
 
 const Register = () => {
 const { registerUser } = useContext(AuthContext);
-// const validationServices = new ValidationServices();
+
+const validationServices = new ValidationServices();
 
 const initialFormValue = {
   username:'',
@@ -24,32 +25,25 @@ const initialFormValue = {
 };
 const [form, setForm] = useState(initialFormValue);
 const [errors, setErrors] = useState({});
-// const [isSubmit, setIsSubmit] = useState(false);
 
-// const { username, lastname, email, password, passwordConfirm } = form;
-
-    // const validarMisCampos= (inputName, inputValue) => {
-    //   switch(inputName){
-    //     case 'email':{
-    //       console.log("brian se la come")
-    //       return validationServices.validarEmail(inputValue);
-    //     }
-    //     default:{
-    //       return true
-    //       break;
-    //     }
-        //   }
-    // }
 
 const handleOnBlur = (e) =>{
-  // Metodo viejo, sin validaciones
-  if(e.target.value === " "|| Number(e.target.value) === 0 
-   ) {
+  if(e.target.value === ""|| Number(e.target.value) === 0 
+   ) {console.log('estamos en la primera validacion')
       setErrors({
       ...errors,
       [e.target.name] : `este campo es obligatorio`
     });
-  }else { 
+  }else if (e.target.name === "email" && 
+  !validationServices.validarEmail(e.target)
+  ) { console.log('javi trolo')
+      setErrors({
+      ...errors,
+      [e.target.name] : `Formato de Email no valido`
+    });
+  } 
+  
+  else { 
     setErrors({
       ...errors,
       [e.target.name] : "",
@@ -57,7 +51,6 @@ const handleOnBlur = (e) =>{
   } 
 };
 const handleOnChange = e =>  {
-  // console.log(e.target.name)
 setForm ({ ...form, [e.target.name]: e.target.value});
 
 };
@@ -66,42 +59,9 @@ setForm ({ ...form, [e.target.name]: e.target.value});
 const handleOnSubmit = e => {
     e.preventDefault(); 
     registerUser(form);
-    // setErrors(validate(form));
-    // setIsSubmit(true);
-    console.log("funciona", form)
 };
 
-// useEffect(()=>{
-//   if (Object.keys(errors).length === 0 && isSubmit) {
-//     // console.log(form)
-//   }
-// }, [errors])
 
-
-
-// const validate = (values) => {
-//   const errors = {};
-//   const regEx = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3,4})+$/;
-//   if(!values.username) {
-//     errors.username = "El nombre es obligatorio";
-//   }
-//    if(!values.lastname) {
-//     errors.lastname = "El Apellido es obligatorio";
-//   }
-//   if(!values.email) {
-//    errors.email = "El Email es obligatorio";
-//  }
-//    if(!values.password) {
-//     errors.password = "Campo obligatorio";
-//   }
-//    if(!values.passwordConfirm) {
-//     errors.passwordConfirm = "Campo obligatorio";
-//   }
-//    if(!values.phoneNumber) {
-//     errors.phoneNumber = "El numero de telefono es obligatorio";
-//   }
-//   return errors;
-// } ;
 
   return (
     <>
@@ -118,6 +78,7 @@ const handleOnSubmit = e => {
       value={form.username}
       onChange={handleOnChange}
       onBlur={handleOnBlur}
+      minLength='4'
       />
       <p>{errors.username}</p>
 
@@ -142,8 +103,9 @@ const handleOnSubmit = e => {
       value={form.email}
       onChange={handleOnChange}
       onBlur={handleOnBlur}
+      maxLength='30'
       />
-      <p>{errors.username}</p>
+      <p>{errors.email}</p>
       <div>
        <label>Contraseña</label>
        <br/>
@@ -153,6 +115,8 @@ const handleOnSubmit = e => {
       value={form.password}
       onChange={handleOnChange}
       onBlur={handleOnBlur}
+      minLength='8'
+      maxLength='30'
       />
       <p>{errors.password}</p>
       </div>  
@@ -164,6 +128,8 @@ const handleOnSubmit = e => {
       value={form.passwordConfirm}
       onChange={handleOnChange}
       onBlur={handleOnBlur}
+      minLength='8'
+      maxLength='30'
       />
       <p>{errors.passwordConfirm}</p>
       <br/> 
