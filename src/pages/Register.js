@@ -36,13 +36,20 @@ const handleOnBlur = (e) =>{
     });
   }else if (e.target.name === "email" && 
   !validationServices.validarEmail(e.target)
-  ) { console.log('javi trolo')
+  ) { console.log('estamos en la validacion de email')
       setErrors({
       ...errors,
       [e.target.name] : `Formato de Email no valido`
     });
-  } 
-  
+  } else if(e.target.name === "phoneNumber" &&
+    !validationServices.phoneValidation(e.target) 
+  ) {
+     setErrors({
+      ...errors,
+      [e.target.name] : `el numero no es valido`
+    });
+
+  }
   else { 
     setErrors({
       ...errors,
@@ -58,7 +65,16 @@ setForm ({ ...form, [e.target.name]: e.target.value});
 
 const handleOnSubmit = e => {
     e.preventDefault(); 
+  if(form.password != form.passwordConfirm) {
+    setErrors({
+      ...errors,
+      ["passwordConfirm"] : `Las contraseñas no coinciden`
+    });
+    return;
+  }
+
     registerUser(form);
+   
 };
 
 
@@ -135,7 +151,8 @@ const handleOnSubmit = e => {
       <br/> 
       <label>Numero de telefono</label>
       <br/>
-        <input 
+      <div className='phoneNumber'>
+        <input  
       type="number"
       name='phoneNumber'
       value={form.phoneNumber}
@@ -143,7 +160,7 @@ const handleOnSubmit = e => {
       onBlur={handleOnBlur}
       />
       <p>{errors.phoneNumber}</p>
-
+      </div>
       <br/> 
       <div className='button-styles'>
       <Button disabled={Object.values(form).some(

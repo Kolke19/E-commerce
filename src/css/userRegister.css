@@ -18,3 +18,7 @@
     justify-content: center;
     padding-top: 0.5rem;
 }
+.phoneNumber input{
+    -webkit-appearance: none !important;
+    margin: 0;
+}
