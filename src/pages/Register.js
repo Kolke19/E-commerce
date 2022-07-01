@@ -1,6 +1,6 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
-import {useState, useContext} from 'react';
+import {Link, useNavigate} from 'react-router-dom';
+import {useState, useContext, useEffect} from 'react';
 import { Button } from 'react-bootstrap';
 import AuthContext from '../context/AuthContext';
 import "../css/userRegister.css"
@@ -11,7 +11,8 @@ import "../css/userRegister.css"
 
 
 const Register = () => {
-const { registerUser } = useContext(AuthContext);
+const { registerUser, isAuth } = useContext(AuthContext);
+const navigate = useNavigate();
 // const validationServices = new ValidationServices();
 
 const initialFormValue = {
@@ -77,6 +78,12 @@ const handleOnSubmit = e => {
 //   }
 // }, [errors])
 
+useEffect (() => {
+  if(isAuth) {
+    navigate('/private')
+  }
+
+}, [isAuth])
 
 
 // const validate = (values) => {

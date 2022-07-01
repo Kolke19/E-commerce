@@ -12,6 +12,8 @@ import Home from './pages/Home';
 import Register from './pages/Register';
 //backend context 
 import AuthState from './context/AuthState';
+import Private from './pages/Private';
+import PrivateRoute from './routes/PrivateRoute';
 // import { Form } from 'react-bootstrap';
 // import Footer from './components/Footer';
 
@@ -23,6 +25,11 @@ function App() {
             <Routes>
               <Route path='/' element={<Home/>}/>
               <Route path='/register' element={<Register/>}/>
+              <Route path='/private'element={
+                <PrivateRoute>
+                  <Private/>
+                </PrivateRoute>
+                } />
            </Routes>
          </Layout>
     </AuthState>

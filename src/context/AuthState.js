@@ -35,12 +35,27 @@ const registerUser = async (data) => {
     } catch (error) {
         console.log(error)
     }
+};
+
+const getUser = async () => {
+    try {
+        const token = localStorage.getItem('token');
+        if(token) {
+            authToken(token);
+        }
+        const response = await clientAxios.get('http://localhost:4000/api/v1/auth/user');
+        console.log(response);
+        dispatch({type: GET_USER, payload: response.data});
+    } catch (error) {
+        console.log(error);
+    }
 }
 
     return (
         <AuthContext.Provider value={{
             ...state,//hacemos esas propiedades salgan del objeto y se almacenen en un obj nuevo
-            registerUser
+            registerUser,
+            getUser
         }}>
             {children}
 
