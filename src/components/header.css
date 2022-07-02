@@ -1,0 +1,12 @@
+.logo-header{
+    width: 5rem;
+}
+
+.cart{
+    font-size: 2rem;
+    color: #00a0e1;
+}
+
+.cart:hover{
+  opacity: 60%;
+}

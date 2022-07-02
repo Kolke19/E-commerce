@@ -1,18 +1,17 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
+import React from "react";
+import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router } from "react-router-dom";
-import './index.css'
+import "./index.css";
 
-import Hero from './components/Hero';
-import Benefits from './components/Benefits';
-import MenuCategory from './components/MenuCategory';
+import App from "./App";
+import AdminPanel from "./pages/adminpanel";
 
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <Router>
-    <Hero/>
-    <Benefits/>
-    <MenuCategory/>
-  </Router>
+  
+    <Router>
+        <App />
+    </Router>
+
 );

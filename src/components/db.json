@@ -1,0 +1,99 @@
+{
+  "Articulos": [
+    {
+      "id": 1,
+      "name": "Mouse desde back 1",
+      "price": 1234,
+      "categoria": "Mouse",
+      "destacado": false,
+      "descripcion": "Intel® B660 AORUS Motherboard with 12+1+1 Twin Hybrid Phases Digital VRM Design, Fully Covered Thermal Design, 2 x PCIe 4.0 M.2 with Thermal Guard, Intel® 2.5GbE LAN, WIFI 6 802.11ax, Rear USB 3.2 Gen 2x2 Type-C®, RGB FUSION 2.0, Q-Flash Plus 2",
+      "img": "https://www.tradeinn.com/f/13817/138171706_2/trust-raton-gaming-gxt-138-x-ray-4000-dpi.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Mouse desde back 2",
+      "price": 1234,
+      "categoria": "Mouse",
+      "destacado": false,
+      "descripcion": "Intel® B660 AORUS Motherboard with 12+1+1 Twin Hybrid Phases Digital VRM Design, Fully Covered Thermal Design, 2 x PCIe 4.0 M.2 with Thermal Guard, Intel® 2.5GbE LAN, WIFI 6 802.11ax, Rear USB 3.2 Gen 2x2 Type-C®, RGB FUSION 2.0, Q-Flash Plus 2",
+      "img": "https://www.tradeinn.com/f/13817/138171706_2/trust-raton-gaming-gxt-138-x-ray-4000-dpi.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Mouse desde back 3",
+      "price": 1234,
+      "categoria": "Mouse",
+      "destacado": false,
+      "descripcion": "Intel® B660 AORUS Motherboard with 12+1+1 Twin Hybrid Phases Digital VRM Design, Fully Covered Thermal Design, 2 x PCIe 4.0 M.2 with Thermal Guard, Intel® 2.5GbE LAN, WIFI 6 802.11ax, Rear USB 3.2 Gen 2x2 Type-C®, RGB FUSION 2.0, Q-Flash Plus 3",
+      "img": "https://www.tradeinn.com/f/13817/138171706_2/trust-raton-gaming-gxt-138-x-ray-4000-dpi.jpg"
+    },
+    {
+      "id": 4,
+      "name": "Teclado desde back 4",
+      "price": 1234,
+      "categoria": "Teclado",
+      "destacado": true,
+      "descripcion": "Intel® B660 AORUS Motherboard with 12+1+1 Twin Hybrid Phases Digital VRM Design, Fully Covered Thermal Design, 2 x PCIe 4.0 M.2 with Thermal Guard, Intel® 2.5GbE LAN, WIFI 6 802.11ax, Rear USB 3.2 Gen 2x2 Type-C®, RGB FUSION 2.0, Q-Flash Plus 4",
+      "img": "https://cache-static.libreopcion.com/img/teclado_gamer_gx_gaming_genius_scorpion_k8_ea2792adcba600022e22dbc7351f12c1.jpg"
+    },
+    {
+      "id": 5,
+      "name": "Teclado desde back 5",
+      "price": 1234,
+      "categoria": "Teclado",
+      "destacado": false,
+      "descripcion": "Intel® B660 AORUS Motherboard with 12+1+1 Twin Hybrid Phases Digital VRM Design, Fully Covered Thermal Design, 2 x PCIe 4.0 M.2 with Thermal Guard, Intel® 2.5GbE LAN, WIFI 6 802.11ax, Rear USB 3.2 Gen 2x2 Type-C®, RGB FUSION 2.0, Q-Flash Plus 5",
+      "img": "https://cache-static.libreopcion.com/img/teclado_gamer_gx_gaming_genius_scorpion_k8_ea2792adcba600022e22dbc7351f12c1.jpg"
+    },
+    {
+      "id": 6,
+      "name": "Teclado desde back 6",
+      "price": 1234,
+      "categoria": "Teclado",
+      "destacado": false,
+      "descripcion": "Intel® B660 AORUS Motherboard with 12+1+1 Twin Hybrid Phases Digital VRM Design, Fully Covered Thermal Design, 2 x PCIe 4.0 M.2 with Thermal Guard, Intel® 2.5GbE LAN, WIFI 6 802.11ax, Rear USB 3.2 Gen 2x2 Type-C®, RGB FUSION 2.0, Q-Flash Plus 6",
+      "img": "https://cache-static.libreopcion.com/img/teclado_gamer_gx_gaming_genius_scorpion_k8_ea2792adcba600022e22dbc7351f12c1.jpg"
+    },
+    {
+      "id": 7,
+      "name": "Monitor desde back 7",
+      "price": 1234,
+      "categoria": "Monitor",
+      "destacado": true,
+      "descripcion": "Intel® B660 AORUS Motherboard with 12+1+1 Twin Hybrid Phases Digital VRM Design, Fully Covered Thermal Design, 2 x PCIe 4.0 M.2 with Thermal Guard, Intel® 2.5GbE LAN, WIFI 6 802.11ax, Rear USB 3.2 Gen 2x2 Type-C®, RGB FUSION 2.0, Q-Flash Plus 7",
+      "img": "https://sc04.alicdn.com/kf/H7c5ea3d10fcf432283979bb4ad8e5bc0V.png"
+    },
+    {
+      "id": 8,
+      "name": "Monitor desde back 8",
+      "price": 1234,
+      "categoria": "Monitor",
+      "destacado": false,
+      "descripcion": "Intel® B660 AORUS Motherboard with 12+1+1 Twin Hybrid Phases Digital VRM Design, Fully Covered Thermal Design, 2 x PCIe 4.0 M.2 with Thermal Guard, Intel® 2.5GbE LAN, WIFI 6 802.11ax, Rear USB 3.2 Gen 2x2 Type-C®, RGB FUSION 2.0, Q-Flash Plus 8",
+      "img": "https://sc04.alicdn.com/kf/H7c5ea3d10fcf432283979bb4ad8e5bc0V.png"
+    },
+    {
+      "id": 9,
+      "name": "Monitor desde back 9",
+      "price": 1234,
+      "categoria": "Monitor",
+      "destacado": false,
+      "descripcion": "Intel® B660 AORUS Motherboard with 12+1+1 Twin Hybrid Phases Digital VRM Design, Fully Covered Thermal Design, 2 x PCIe 4.0 M.2 with Thermal Guard, Intel® 2.5GbE LAN, WIFI 6 802.11ax, Rear USB 3.2 Gen 2x2 Type-C®, RGB FUSION 2.0, Q-Flash Plus 9",
+      "img": "https://sc04.alicdn.com/kf/H7c5ea3d10fcf432283979bb4ad8e5bc0V.png"
+    }
+  ],
+  "Usuarios": [
+    {
+      "name": "matias",
+      "mail": "matias@user.com",
+      "admin": false,
+      "id": 1
+    },
+    {
+      "name": "lucas",
+      "mail": "lucas@user.com",
+      "admin": true,
+      "id": 2
+    }
+  ]
+}

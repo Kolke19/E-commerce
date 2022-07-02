@@ -7,9 +7,8 @@ import benefit3 from "../assets/img/Benefit3.jpg"
 const Benefits =()=>{
     return(
         <>
-        <section className="Benefits container mb-4 mt-4">
-        <h1> Beneficios</h1>
-        <hr/>
+        <section className="Benefits container mb-5 mt-5">
+        <h2 className="bg-dark text-light p-3">BENEFICIOS</h2>
             <section className="Benefits_Cards row mt-4 text-center">
                 <div className="col-12 col-sm-6 col-md-4">
                     <article>
@@ -28,8 +27,7 @@ const Benefits =()=>{
                 </div>
             </section>
     </section>
-
-		 
+		
         </>
     )
 }

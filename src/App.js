@@ -1,24 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
+import {Routes,Route} from "react-router-dom"
+
+
+import TemplateProduct from "./pages/templateProduct";
+import Home from './pages/home';
+import TemplateCategory from './pages/templateCategory';
+import Layout from './components/Layout';
+import AdminPanel from './pages/adminpanel';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+<Layout>
+    <Routes>
+          <Route path="/" element={<Home/>}/>
+          <Route path="/producto" element={<TemplateProduct/>}/>
+          <Route path="/categoria" element={<TemplateCategory/>}/>
+          <Route path="/wp-admin" element={<AdminPanel/>}/>
+      </Routes>
+  </Layout>
+  </>
   );
 }
 
