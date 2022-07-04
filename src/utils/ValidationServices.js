@@ -1,9 +1,6 @@
 class ValidationServices {
     validarNoEmpty = input => input.value ? true : false;
-    // validarString = (input, longMin) => {
-    //     !longMin ? longMin = 1 : true;
-    //     return input.value.length >= longMin ? true : false;        
-    // }
+ 
     validarImgUrl = input => {
         const regEx = /\.(jpg|png|gif)$/i;
         return regEx.test(input.value) ? true : false;

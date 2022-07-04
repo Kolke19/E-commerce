@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import {useState, useContext} from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, Container, Form, FormControl, FormGroup, FormLabel } from 'react-bootstrap';
 import AuthContext from '../context/AuthContext';
 import "../css/userRegister.css"
 //validaciones
@@ -21,7 +21,7 @@ const initialFormValue = {
   email:'',
   password:'',
   passwordConfirm:'',
-  phoneNumber:0,
+  phoneNumber:'',
 };
 const [form, setForm] = useState(initialFormValue);
 const [errors, setErrors] = useState({});
@@ -32,7 +32,7 @@ const handleOnBlur = (e) =>{
    ) {console.log('estamos en la primera validacion')
       setErrors({
       ...errors,
-      [e.target.name] : `este campo es obligatorio`
+      [e.target.name] : `Este campo es obligatorio`
     });
   }else if (e.target.name === "email" && 
   !validationServices.validarEmail(e.target)
@@ -46,7 +46,7 @@ const handleOnBlur = (e) =>{
   ) {
      setErrors({
       ...errors,
-      [e.target.name] : `el numero no es valido`
+      [e.target.name] : `El numero no es valido`
     });
 
   }
@@ -82,13 +82,12 @@ const handleOnSubmit = e => {
   return (
     <>
     <h1>Estamos desde el register</h1>
-    <Link to="/">volver al home pa</Link>
-    <div className='register-styles'>
-    <form onSubmit={handleOnSubmit}>
-      <div>
-      <label>Nombre</label>
-      <br/>
-      <input 
+    <Link to="/">volver al home </Link>
+    <Container id='main-container' className='d-grid h-100 container-xl'>
+    <Form onSubmit={handleOnSubmit}className='form-styles w-100 text-center' id='sign-form'>
+     <Form.Group>
+      <FormLabel className='mt-3'>Nombre</FormLabel>
+      <FormControl 
       type="text"
       name='username'
       value={form.username}
@@ -96,24 +95,22 @@ const handleOnSubmit = e => {
       onBlur={handleOnBlur}
       minLength='4'
       />
-      <p>{errors.username}</p>
-
-      </div>
-      <div>
-      <label>apellido</label>
-      <br/>
-      <input 
+      <p id='paragraph-styles'>{errors.username}</p>
+    </Form.Group>   
+      <FormGroup>
+      <FormLabel>Apellido</FormLabel>
+      <FormControl 
       type="text"
       name='lastname'
       value={form.lastname}
       onChange={handleOnChange}
       onBlur={handleOnBlur}
       />
-      <p>{errors.lastname}</p>
-      </div>
-       <label>Email</label>
-       <br/>
-      <input 
+      <p id='paragraph-styles'>{errors.lastname}</p>
+      </FormGroup>
+      <FormGroup>
+       <FormLabel>Email</FormLabel>
+      <FormControl 
       type="text"
       name='email'
       value={form.email}
@@ -121,11 +118,11 @@ const handleOnSubmit = e => {
       onBlur={handleOnBlur}
       maxLength='30'
       />
-      <p>{errors.email}</p>
-      <div>
-       <label>Contraseña</label>
-       <br/>
-      <input 
+      <p id='paragraph-styles'>{errors.email}</p>
+      </FormGroup>  
+      <FormGroup>
+       <FormLabel>Contraseña</FormLabel>
+      <FormControl 
       type="password"
       name='password'
       value={form.password}
@@ -134,11 +131,12 @@ const handleOnSubmit = e => {
       minLength='8'
       maxLength='30'
       />
-      <p>{errors.password}</p>
-      </div>  
-       <label>Confirmar contraseña</label>
-       <br/>
-      <input 
+      <p id='paragraph-styles'>{errors.password}</p>
+      </FormGroup> 
+
+      <FormGroup>
+       <FormLabel>Confirmar contraseña</FormLabel> 
+      <FormControl 
       type="password"
       name='passwordConfirm'
       value={form.passwordConfirm}
@@ -147,28 +145,28 @@ const handleOnSubmit = e => {
       minLength='8'
       maxLength='30'
       />
-      <p>{errors.passwordConfirm}</p>
-      <br/> 
-      <label>Numero de telefono</label>
-      <br/>
-      <div className='phoneNumber'>
-        <input  
+      <p id='paragraph-styles'>{errors.passwordConfirm}</p>
+      </FormGroup>
+
+      <FormGroup>
+      <FormLabel>Número de telefono</FormLabel>
+        <FormControl  
       type="number"
       name='phoneNumber'
       value={form.phoneNumber}
       onChange={handleOnChange}
       onBlur={handleOnBlur}
+      placeholder="+54"
       />
-      <p>{errors.phoneNumber}</p>
-      </div>
-      <br/> 
-      <div className='button-styles'>
+      <p id='paragraph-styles'>{errors.phoneNumber}</p>
+      </FormGroup>
+   
       <Button disabled={Object.values(form).some(
         (value) => value === '' || value === 0
-      )} className='btn btn-dark' type="submit">Registrar</Button>
-      </div>
-    </form>
-    </div>
+      )} className='btn btn-info mb-3'id='button-styles' type="submit">Registrar</Button>
+      <Link to='/' />
+    </Form>
+    </Container>
     </>
   )
 }
