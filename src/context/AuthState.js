@@ -12,7 +12,8 @@ import {//acciones
     IS_LOADING,
     GET_USER,
     REGISTER_ERROR,
-    REGISTER_SUCCES
+    REGISTER_SUCCES,
+    LOGOUT
 } from '../types'
 
 
@@ -51,11 +52,16 @@ const getUser = async () => {
     }
 }
 
+const logout = () =>{ 
+    localStorage.removeItem('token');
+    dispatch ({type: LOGOUT});}
+
     return (
         <AuthContext.Provider value={{
             ...state,//hacemos esas propiedades salgan del objeto y se almacenen en un obj nuevo
             registerUser,
-            getUser
+            getUser,
+            logout
         }}>
             {children}
 

@@ -2,7 +2,8 @@ import {
     IS_LOADING,
     GET_USER,
     REGISTER_SUCCES,
-    REGISTER_ERROR
+    REGISTER_ERROR,
+    LOGOUT
 } from '../types'
 
 
@@ -22,6 +23,13 @@ const authReducer = (state, action) => {
                     ...state,
                     user:action.payload.user,
                     isAuth: true,
+                    loading: false
+                }
+                case LOGOUT: 
+                return {
+                    ...state,
+                    user:null,
+                    isAuth:false,
                     loading: false
                 }
         default:
