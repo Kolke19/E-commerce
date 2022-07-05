@@ -6,6 +6,8 @@ const ProductRow = ({e,prueba,handleGetId,setGetIDEdit}) =>{
         setGetIDEdit(e.id);
       };
 
+      
+
 
     return(<>
 

@@ -141,6 +141,8 @@ const handleChangeEdit = (e) => {
     window.location.reload();
   };
 
+  console.log("fuera de prueba",getIDEdit)
+
   const prueba = async (e) =>{
     const res = await axios.get(`${URL}/${getIDEdit}`);
         setFormEdit({
@@ -151,9 +153,10 @@ const handleChangeEdit = (e) => {
           descripcion: res.data.descripcion,
           img: res.data.img,
         });  
+        console.log("desde prueba",getIDEdit)
       }
     
-      console.log(getIDEdit)
+  
 
 
   return (
@@ -189,7 +192,7 @@ const handleChangeEdit = (e) => {
             </thead>
             <tbody>
             {listProduct.map((e) => (
-            <ProductRow key={e.id} e={e} prueba={prueba}  handleGetId={handleGetId} setGetIDEdit={setGetIDEdit}/>
+            <ProductRow key={e.id} e={e} prueba={prueba} getIDEdit={getIDEdit} handleGetId={handleGetId} setGetIDEdit={setGetIDEdit}/>
             ))}
             </tbody>
           </table>
