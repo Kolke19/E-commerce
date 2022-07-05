@@ -1,19 +1,20 @@
 import React from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import {useState, useContext, useEffect} from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, Container, Form, FormControl, FormGroup, FormLabel } from 'react-bootstrap';
 import AuthContext from '../context/AuthContext';
 import "../css/userRegister.css"
 //validaciones
-// import ValidationServices from '../utils/ValidationServices.js';
+import ValidationServices from '../utils/ValidationServices.js';
 
 
 
 
 const Register = () => {
-const { registerUser, isAuth } = useContext(AuthContext);
 const navigate = useNavigate();
-// const validationServices = new ValidationServices();
+const { registerUser, isAuth } = useContext(AuthContext);
+
+const validationServices = new ValidationServices();
 
 const initialFormValue = {
   username:'',
@@ -21,36 +22,36 @@ const initialFormValue = {
   email:'',
   password:'',
   passwordConfirm:'',
-  phoneNumber:0,
+  phoneNumber:'',
 };
 const [form, setForm] = useState(initialFormValue);
 const [errors, setErrors] = useState({});
-// const [isSubmit, setIsSubmit] = useState(false);
 
-// const { username, lastname, email, password, passwordConfirm } = form;
-
-    // const validarMisCampos= (inputName, inputValue) => {
-    //   switch(inputName){
-    //     case 'email':{
-    //       console.log("brian se la come")
-    //       return validationServices.validarEmail(inputValue);
-    //     }
-    //     default:{
-    //       return true
-    //       break;
-    //     }
-        //   }
-    // }
 
 const handleOnBlur = (e) =>{
-  // Metodo viejo, sin validaciones
-  if(e.target.value === " "|| Number(e.target.value) === 0 
-   ) {
+  if(e.target.value === ""|| Number(e.target.value) === 0 
+   ) {console.log('estamos en la primera validacion')
       setErrors({
       ...errors,
-      [e.target.name] : `este campo es obligatorio`
+      [e.target.name] : `Este campo es obligatorio`
     });
-  }else { 
+  }else if (e.target.name === "email" && 
+  !validationServices.validarEmail(e.target)
+  ) { console.log('estamos en la validacion de email')
+      setErrors({
+      ...errors,
+      [e.target.name] : `Formato de Email no valido`
+    });
+  } else if(e.target.name === "phoneNumber" &&
+    !validationServices.phoneValidation(e.target) 
+  ) {
+     setErrors({
+      ...errors,
+      [e.target.name] : `El numero no es valido`
+    });
+
+  }
+  else { 
     setErrors({
       ...errors,
       [e.target.name] : "",
@@ -58,7 +59,6 @@ const handleOnBlur = (e) =>{
   } 
 };
 const handleOnChange = e =>  {
-  // console.log(e.target.name)
 setForm ({ ...form, [e.target.name]: e.target.value});
 
 };
@@ -66,17 +66,18 @@ setForm ({ ...form, [e.target.name]: e.target.value});
 
 const handleOnSubmit = e => {
     e.preventDefault(); 
+  if(form.password !== form.passwordConfirm) {
+    setErrors({
+      ...errors,
+      "passwordConfirm" : `Las contraseñas no coinciden`
+    });
+    return;
+  }
+
     registerUser(form);
-    // setErrors(validate(form));
-    // setIsSubmit(true);
-    console.log("funciona", form)
+   
 };
 
-// useEffect(()=>{
-//   if (Object.keys(errors).length === 0 && isSubmit) {
-//     // console.log(form)
-//   }
-// }, [errors])
 
 useEffect (() => {
   if(isAuth) {
@@ -85,114 +86,94 @@ useEffect (() => {
 
 }, [isAuth])
 
-
-// const validate = (values) => {
-//   const errors = {};
-//   const regEx = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3,4})+$/;
-//   if(!values.username) {
-//     errors.username = "El nombre es obligatorio";
-//   }
-//    if(!values.lastname) {
-//     errors.lastname = "El Apellido es obligatorio";
-//   }
-//   if(!values.email) {
-//    errors.email = "El Email es obligatorio";
-//  }
-//    if(!values.password) {
-//     errors.password = "Campo obligatorio";
-//   }
-//    if(!values.passwordConfirm) {
-//     errors.passwordConfirm = "Campo obligatorio";
-//   }
-//    if(!values.phoneNumber) {
-//     errors.phoneNumber = "El numero de telefono es obligatorio";
-//   }
-//   return errors;
-// } ;
-
   return (
     <>
     <h1>Estamos desde el register</h1>
-    <Link to="/">volver al home pa</Link>
-    <div className='register-styles'>
-    <form onSubmit={handleOnSubmit}>
-      <div>
-      <label>Nombre</label>
-      <br/>
-      <input 
+    <Link to="/">volver al home </Link>
+    <Container id='main-container' className='d-grid h-100 container-xl'>
+    <Form onSubmit={handleOnSubmit}className='form-styles w-100 text-center' id='sign-form'>
+     <Form.Group>
+      <FormLabel className='mt-3'>Nombre</FormLabel>
+      <FormControl 
       type="text"
       name='username'
       value={form.username}
       onChange={handleOnChange}
       onBlur={handleOnBlur}
+      minLength='4'
       />
-      <p>{errors.username}</p>
-
-      </div>
-      <div>
-      <label>apellido</label>
-      <br/>
-      <input 
+      <p id='paragraph-styles'>{errors.username}</p>
+    </Form.Group>   
+      <FormGroup>
+      <FormLabel>Apellido</FormLabel>
+      <FormControl 
       type="text"
       name='lastname'
       value={form.lastname}
       onChange={handleOnChange}
       onBlur={handleOnBlur}
       />
-      <p>{errors.lastname}</p>
-      </div>
-       <label>Email</label>
-       <br/>
-      <input 
+      <p id='paragraph-styles'>{errors.lastname}</p>
+      </FormGroup>
+      <FormGroup>
+       <FormLabel>Email</FormLabel>
+      <FormControl 
       type="text"
       name='email'
       value={form.email}
       onChange={handleOnChange}
       onBlur={handleOnBlur}
+      maxLength='30'
       />
-      <p>{errors.username}</p>
-      <div>
-       <label>Contraseña</label>
-       <br/>
-      <input 
+      <p id='paragraph-styles'>{errors.email}</p>
+      </FormGroup>  
+      <FormGroup>
+       <FormLabel>Contraseña</FormLabel>
+      <FormControl 
       type="password"
       name='password'
       value={form.password}
       onChange={handleOnChange}
       onBlur={handleOnBlur}
+      minLength='8'
+      maxLength='30'
       />
-      <p>{errors.password}</p>
-      </div>  
-       <label>Confirmar contraseña</label>
-       <br/>
-      <input 
+      <p id='paragraph-styles'>{errors.password}</p>
+      </FormGroup> 
+
+      <FormGroup>
+       <FormLabel>Confirmar contraseña</FormLabel> 
+      <FormControl 
       type="password"
       name='passwordConfirm'
       value={form.passwordConfirm}
       onChange={handleOnChange}
       onBlur={handleOnBlur}
+      minLength='8'
+      maxLength='30'
       />
-      <p>{errors.passwordConfirm}</p>
-      <br/> 
-      <label>Numero de telefono</label>
-      <br/>
-        <input 
+      <p id='paragraph-styles'>{errors.passwordConfirm}</p>
+      </FormGroup>
+
+      <FormGroup>
+      <FormLabel>Número de telefono</FormLabel>
+        <FormControl  
       type="number"
       name='phoneNumber'
       value={form.phoneNumber}
       onChange={handleOnChange}
       onBlur={handleOnBlur}
+      placeholder="+54"
       />
-      <p>{errors.phoneNumber}</p>
-
-      <br/> 
-      <div className='button-styles'>
+      <p id='paragraph-styles'>{errors.phoneNumber}</p>
+      </FormGroup>
+   
       <Button disabled={Object.values(form).some(
         (value) => value === '' || value === 0
-      )} className='btn btn-dark' type="submit">Registrar</Button>
-      </div>
-    </form>
-    </div>
+      )} className='btn btn-info mb-3'id='button-styles' type="submit">Registrar</Button>
+      <Link to='/' />
+    </Form>
+    </Container>
     </>
   )
 }

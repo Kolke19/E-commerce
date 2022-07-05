@@ -26,7 +26,7 @@ const AuthState = ({children}) => {
     const [state, dispatch] = useReducer (AuthReducer, initialState);
 //funcion de registro del usuario
 
-const registerUser = async (data) => {
+const registerUser = async (data) => { //funciones asincronas siempre tienen un try and catch.
     try {
         const response = await clientAxios.post('http://localhost:4000/api/v1/auth/signup', data)
         dispatch({type: REGISTER_SUCCES, payload: response.data});
