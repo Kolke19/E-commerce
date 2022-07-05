@@ -10,8 +10,6 @@ const ListarUser = () =>{
     const [getID , setGetId] = useState();
     
    
-
-
     const getData = async () => {
       const res = await axios.get(URL);
       return res;
@@ -26,38 +24,10 @@ const ListarUser = () =>{
       });
     }, []);
 
-
  
-  
-
-   
-
 
     return(<>
-    <div>
-        <div className="m-4">
-          <h1>Usuarios</h1>
-          <hr />
-        </div>
-        <div className="p-5">
-          <table className="table table-striped table-bordered">
-            <thead>
-              <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">mail</th>
-                <th scope="col">administrador</th>
-                <th scope="col">accion</th>
-              </tr>
-            </thead>
-            <tbody>
-              {listUsers.map((e) => (
-                <UserRow user={e} setID={setGetId} getID={getID}/>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
+       <UserRow setID={setGetId} listUsers={listUsers}/>
       <div
         className="modal fade"
         id="exampleModal5"

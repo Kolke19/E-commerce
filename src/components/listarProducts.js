@@ -1,14 +1,14 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import "./listproducts.css";
+import ProductRow from "./productRow";
 
 
 const ListarProducts = () => {
 
 
   const URL = "http://localhost:4000/Articulos";
-
-
+ 
 
 
   const getData = async (id) => {
@@ -100,7 +100,7 @@ const ListarProducts = () => {
 
 
 
-  const [getIDEdit, setGetIDEdit] = useState(0);
+  const [getIDEdit, setGetIDEdit] = useState(null);
   const [formEdit, setFormEdit] = useState ({name: "",
   price: 0,
   categoria: "",
@@ -109,33 +109,14 @@ const ListarProducts = () => {
   img: "",
 });
 
+
+
 const handleChangeEdit = (e) => {
   setFormEdit({
     ...formEdit,
     [e.target.name]: e.target.value,
   });
 };
-
-
-
-
-  const handleGetIdEdit =  (e) => {
-    setGetIDEdit(e.target.id);
-  };
-
-
-  const prueba = async (e) =>{
-/*     const res = await axios.get(`${URL}/${getIDEdit}`);
-    setFormEdit({
-      name: res.data.name,
-      price: res.data.price,
-      categoria: res.data.categoria,
-      destacado: res.data.destacado,
-      descripcion: res.data.descripcion,
-      img: res.data.img,
-    });  */
-    console.log(getIDEdit)
-  }
 
 
   const handleEdit = async (e) => {
@@ -160,9 +141,27 @@ const handleChangeEdit = (e) => {
     window.location.reload();
   };
 
+  const prueba = async (e) =>{
+    const res = await axios.get(`${URL}/${getIDEdit}`);
+        setFormEdit({
+          name: res.data.name,
+          price: res.data.price,
+          categoria: res.data.categoria,
+          destacado: res.data.destacado,
+          descripcion: res.data.descripcion,
+          img: res.data.img,
+        });  
+      }
+    
+      console.log(getIDEdit)
+
+
   return (
+
+
     <>
-      <div>
+
+<div>
         <div className="m-4">
           <h1>Productos</h1>
           <hr />
@@ -189,50 +188,15 @@ const handleChangeEdit = (e) => {
               </tr>
             </thead>
             <tbody>
-              {listProduct.map((e) => (
-                <tr key={e.id}>
-                  <th>{e.id}</th>
-                  <td>{e.name}</td>
-                  <td>{e.price}</td>
-                  <td>{e.categoria}</td>
-                  <td>{e.destacado.toString()}</td>
-                  <td>
-                    <button
-                      className="btn btn-primary btn_table "
-                      id={e.id}
-                     onClick ={prueba}
-                    >
-                      <i
-                        className="bi bi-pencil fs-5"
-                        id={e.id}
-                        onClick={handleGetIdEdit}
-                        data-bs-toggle="modal"
-                        data-bs-target="#exampleModal3"
-                      ></i>
-                    </button>
-                    
-                    <button
-                      className="btn btn-danger btn_table"
-                      id={e.id}
-                      onClick={handleGetId}
-                      data-bs-toggle="modal"
-                      data-bs-target="#exampleModal2"
-                    >
-                      <i
-                        className="bi bi-trash fs-5"
-                        id={e.id}
-                        onClick={handleGetId}
-                        data-bs-toggle="modal"
-                        data-bs-target="#exampleModal2"
-                      ></i>
-                    </button>
-                  </td>
-                </tr>
-              ))}
+            {listProduct.map((e) => (
+            <ProductRow key={e.id} e={e} prueba={prueba}  handleGetId={handleGetId} setGetIDEdit={setGetIDEdit}/>
+            ))}
             </tbody>
           </table>
         </div>
       </div>
+
+     
 
       <div
         className="modal fade"
