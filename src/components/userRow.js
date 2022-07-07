@@ -1,4 +1,4 @@
-const UserRow = ({setID,listUsers}) =>{
+const UserRow = ({setID,listUsers,testUser}) =>{
 
   
 
@@ -29,15 +29,15 @@ const UserRow = ({setID,listUsers}) =>{
               {listUsers.map((e) => (
             <tr key={e.id}>
             <th>{e.id}</th>
-            <td>{e.namuser}</td>
+            <td>{e.name}</td>
             <td>{e.mail}</td>
             <td>{e.admin.toString()}</td>
             <td>  <button
                 className="btn btn-warning btn_table "
-
+                onClick={handleGetId}
               >
                <i id={e.id} className="bi bi-star-fill fs-5" data-bs-toggle="modal"
-                data-bs-target="#exampleModal5" onClick={handleGetId}></i>
+                data-bs-target="#exampleModal5" onClick={()=> testUser(e.id)}></i>
               </button></td>
           </tr>
               ))}

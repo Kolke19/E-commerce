@@ -28,13 +28,11 @@ const ListarProducts = () => {
 
 
 
-
-
   const [form, setForm] = useState({
     name: "",
     price: 0,
     categoria: "",
-    destacado: "",
+    destacado: false,
     descripcion: "",
     img: "",
   });
@@ -141,10 +139,9 @@ const handleChangeEdit = (e) => {
     window.location.reload();
   };
 
-  console.log("fuera de prueba",getIDEdit)
 
-  const prueba = async (e) =>{
-    const res = await axios.get(`${URL}/${getIDEdit}`);
+  const prueba = async (id) =>{
+    const res = await axios.get(`${URL}/${id}`);
         setFormEdit({
           name: res.data.name,
           price: res.data.price,
@@ -153,10 +150,8 @@ const handleChangeEdit = (e) => {
           descripcion: res.data.descripcion,
           img: res.data.img,
         });  
-        console.log("desde prueba",getIDEdit)
       }
     
-  
 
 
   return (
@@ -192,7 +187,7 @@ const handleChangeEdit = (e) => {
             </thead>
             <tbody>
             {listProduct.map((e) => (
-            <ProductRow key={e.id} e={e} prueba={prueba} getIDEdit={getIDEdit} handleGetId={handleGetId} setGetIDEdit={setGetIDEdit}/>
+            <ProductRow key={e.id} product={e} prueba={prueba} getIDEdit={getIDEdit} handleGetId={handleGetId} setGetIDEdit={setGetIDEdit}/>
             ))}
             </tbody>
           </table>
@@ -262,8 +257,8 @@ const handleChangeEdit = (e) => {
                   onChange={handleChange}
                 >
                   <option>Elige una opcion</option>
-                  <option>false</option>
-                  <option>true</option>
+                  <option >false</option>
+                  <option >true</option>
                 </select>
                 <label className="form-label">Descripcion</label>
                 <input

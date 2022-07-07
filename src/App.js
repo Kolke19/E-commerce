@@ -7,6 +7,7 @@ import Home from './pages/home';
 import TemplateCategory from './pages/templateCategory';
 import Layout from './components/Layout';
 import AdminPanel from './pages/adminpanel';
+import Login from './components/Login';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/" element={<Home/>}/>
           <Route path="/producto" element={<TemplateProduct/>}/>
           <Route path="/categoria" element={<TemplateCategory/>}/>
+          <Route path="/login" element={<Login/>}/>
           <Route path="/wp-admin" element={<AdminPanel/>}/>
       </Routes>
   </Layout>

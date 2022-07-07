@@ -28,7 +28,7 @@ const TemplateCategory = () => {
     <>
       <section className="Categories">
         <div className="container mt-5">
-          <h2 className="text-center border border-dark p-3 bg-light">{categoryKey.toUpperCase()}</h2>
+          <h2 className="text-center bg-dark p-3 text-light  rounded-pill">{categoryKey.toUpperCase()}</h2>
           <div className="row">{getCategory(products, categoryKey)}</div>
         </div>
       </section>

@@ -7,8 +7,7 @@ const ListarUser = () =>{
     const URL = "http://localhost:4000/Usuarios";
 
 
-    const [getID , setGetId] = useState();
-    
+
    
     const getData = async () => {
       const res = await axios.get(URL);
@@ -24,10 +23,32 @@ const ListarUser = () =>{
       });
     }, []);
 
+
+    const [getID , setGetId] = useState();
+    const [formUser,setFormUser] = useState({
+      name: "",
+      mail: "",
+      admin: ""
+    })
+
+    const testUser = async (id) =>{
+      const res = await axios.get(`${URL}/${id}`);
+      setFormUser({
+            name: res.data.name,
+            mail: res.data.mail,
+            admin: !res.data.admin,
+          });  
+        }
+
+    const handleEditUsers = async (e) => {
+      e.preventDefault();
+     const response = await axios.put(`${URL}/${getID}`, formUser);
+      window.location.reload(); 
+    };
  
 
     return(<>
-       <UserRow setID={setGetId} listUsers={listUsers}/>
+       <UserRow setID={setGetId} listUsers={listUsers} testUser={testUser}/>
       <div
         className="modal fade"
         id="exampleModal5"
@@ -56,15 +77,15 @@ const ListarUser = () =>{
             <div className="modal-footer">
               <button
                 type="button"
-                className="btn btn-success"
+                className="btn btn-danger"
                 data-bs-dismiss="modal"
               >
                 Cancelar
               </button>
               <button
                 type="button"
-                className="btn btn-danger"
-        
+                className="btn btn-success"
+                onClick={handleEditUsers}
               >
                 Guardar
               </button>

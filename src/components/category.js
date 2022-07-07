@@ -37,19 +37,19 @@ const Category = () => {
   
       <section className="Categories">
       <div className="container mt-5">
-          <h2 className="bg-dark text-light p-3">DESTACADOS</h2>
+          <h2 className="bg-dark text-light p-3 text-center rounded-pill">DESTACADOS</h2>
           <div className="row">{getOffert(products)}</div>
         </div>
         <div className="container mt-5">
-          <h2 className="bg-dark text-light p-3">MOUSE</h2>
+          <h2 className="bg-dark text-light p-3  text-center rounded-pill">MOUSE</h2>
           <div className="row">{getCategory(products, "Mouse")}</div>
         </div>
         <div className="container mt-5">
-          <h2 className="bg-dark text-light p-3">TECLADO</h2>
+          <h2 className="bg-dark text-light p-3  text-center rounded-pill">TECLADO</h2>
           <div className="row">{getCategory(products, "Teclado")}</div>
         </div>
         <div className="container mt-5">
-          <h2 className="bg-dark text-light p-3">MONITOR</h2>
+          <h2 className="bg-dark text-light p-3  text-center rounded-pill">MONITOR</h2>
           <div className="row">{getCategory(products, "Monitor")}</div>
         </div>
       </section>

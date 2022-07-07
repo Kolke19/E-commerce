@@ -85,14 +85,16 @@
   "Usuarios": [
     {
       "name": "matias",
-      "mail": "matias@user.com",
+      "email": "matias@user.com",
       "admin": false,
+      "contraseña" : "123456789",
       "id": 1
     },
     {
       "name": "lucas",
-      "mail": "lucas@user.com",
+      "email": "lucas@user.com",
       "admin": true,
+      "contraseña" : "123456789",
       "id": 2
     }
   ]

@@ -2,7 +2,16 @@ import { Link } from "react-router-dom";
 import "./header.css";
 import logo from "../assets/img/Logo.png";
 
+
+
+
 const Header = () => {
+
+  const cerrarsession = ( )=>{
+    localStorage.removeItem("UserLogged")
+  }
+
+
   return (
     <>
     
@@ -47,8 +56,9 @@ const Header = () => {
       </ul>
       </div>
       <form className="d-flex">
-        <button className="btn btn-outline-light me-2" type="submit">Login</button>
+        <Link to="/login"><button className="btn btn-outline-light me-2" type="submit">Login</button></Link>
         <button className="btn btn-light" type="submit">Registro</button>
+        <button onClick={cerrarsession} className="btn btn-danger">cerrar sesion</button>
       </form>
     </div>
   </div>
