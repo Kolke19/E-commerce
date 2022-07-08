@@ -27,16 +27,20 @@ const ListarUser = () =>{
     const [getID , setGetId] = useState();
     const [formUser,setFormUser] = useState({
       name: "",
-      mail: "",
-      admin: ""
+      email: "",
+      admin: "",
+      contraseña : "",
+      img:""
     })
 
     const testUser = async (id) =>{
       const res = await axios.get(`${URL}/${id}`);
       setFormUser({
             name: res.data.name,
-            mail: res.data.mail,
+            email: res.data.email,
             admin: !res.data.admin,
+            contraseña: res.data.contraseña,
+            img: res.data.img,
           });  
         }
 

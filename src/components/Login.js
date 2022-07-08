@@ -19,7 +19,11 @@ const Login = () => {
 
   const [errors, setErrors] = useState({});
 
+  const [errorLogin, setErrorLogin] = useState(null)
+
   const handleChangeLogin = (e) => {
+    setErrorLogin(null)
+    
     setFormLogin({
       ...formLogin,
       [e.target.name]: e.target.value,
@@ -31,9 +35,13 @@ const Login = () => {
     const res = await axios.get(URL_API);
     const data = res.data;
     const currentUser = data.find(e => e.email === formLogin.email && e.contraseña === formLogin.contraseña)
+    if(currentUser){
     localStorage.setItem("UserLogged", JSON.stringify(currentUser));
     window.location.href="/wp-admin"
-
+  }
+  else{
+     setErrorLogin(<p className="text-danger fw-bold text-center mt-5 mb-3">Usuario o contraseña incorrectos</p>)
+  }
   };
 
   const handleOnBlur = (e) => {
@@ -112,6 +120,7 @@ const Login = () => {
                 >
                   INGRESAR
                 </button>
+                {errorLogin }
               </div>
             </form>
           </div>

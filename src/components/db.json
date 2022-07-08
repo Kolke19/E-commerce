@@ -84,17 +84,19 @@
   ],
   "Usuarios": [
     {
-      "name": "matias",
+      "name": "Matias",
       "email": "matias@user.com",
       "admin": false,
-      "contraseña" : "123456789",
+      "contraseña": "123456789",
+      "img" : "https://www.allcitycanvas.com/wp-content/uploads/2022/02/twitter-nft-neymar-1-1-1280x720.jpg",
       "id": 1
     },
     {
-      "name": "lucas",
+      "name": "Lucas",
       "email": "lucas@user.com",
       "admin": true,
-      "contraseña" : "123456789",
+      "contraseña": "123456789",
+      "img" : "https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2021/10/25/16351831527188.jpg",
       "id": 2
     }
   ]

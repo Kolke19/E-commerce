@@ -10,3 +10,26 @@
 .cart:hover{
   opacity: 60%;
 }
+
+.user_Data{
+  position: relative;
+  top:-0.5rem;  
+  display: inline;
+}
+
+.img_navbar{
+  width: 2rem;
+  height: 2rem;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.user_name_navbar{
+  display: inline;
+  color : rgb(220, 219, 219);
+}
+
+.arrow_user{
+
+    color : rgb(220, 219, 219);
+}

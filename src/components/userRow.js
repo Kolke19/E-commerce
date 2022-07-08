@@ -30,7 +30,7 @@ const UserRow = ({setID,listUsers,testUser}) =>{
             <tr key={e.id}>
             <th>{e.id}</th>
             <td>{e.name}</td>
-            <td>{e.mail}</td>
+            <td>{e.email}</td>
             <td>{e.admin.toString()}</td>
             <td>  <button
                 className="btn btn-warning btn_table "
