@@ -14,8 +14,8 @@ import Register from './pages/Register';
 import AuthState from './context/AuthState';
 import Private from './pages/Private';
 import PrivateRoute from './routes/PrivateRoute';
-// import { Form } from 'react-bootstrap';
-// import Footer from './components/Footer';
+import SearchNavbar from './pages/SearchNavbar';
+
 
 function App() {
   return (
@@ -25,6 +25,7 @@ function App() {
             <Routes>
               <Route path='/' element={<Home/>}/>
               <Route path='/register' element={<Register/>}/>
+              <Route path='/searchnav' element={<SearchNavbar/>}/>
               <Route path='/private'element={
                 <PrivateRoute>
                   <Private/>
