@@ -52,7 +52,7 @@ const SearchNavbar = () => {
         const handleSubmit = (e) => {
             e.preventDefault();
             filterProducts(search);
-        }
+        }    
     return (
         <div className="containerInput">
             <input 
