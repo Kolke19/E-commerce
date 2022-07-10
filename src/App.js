@@ -1,3 +1,18 @@
+<<<<<<< HEAD
+//DEPENDENCIES
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {Routes, Route} from 'react-router-dom'
+
+// import{routes, route, useLocation, useNavigate, useParams} from "react-router-dom";
+import './Apps.css';
+//PAGES
+
+//COMPONENTS
+// import Layout from "./components/layout/Layout";
+// import { Form } from 'react-bootstrap';
+// import Footer from './components/Footer';
+import LoadingSpinner from './components/LoadingSpinner';
+=======
 import './App.css';
 import {Routes,Route} from "react-router-dom"
 
@@ -15,10 +30,22 @@ import UserPanel from './pages/userpanel';
 
 
 
+>>>>>>> 9904a399d64e1b04f5fdc8adbdaf07ca4e898b5a
 
 function App() {
   return (
     <>
+<<<<<<< HEAD
+    {/* <Layout> */}
+      <LoadingSpinner/>
+      <main>
+    <h1>SOY EL MAIN QUE VA A TODAS PARTES</h1>
+    <button typeof='submit'>Mostrar loading spinner</button>
+      </main>
+    {/* </Layout> */}
+    </>
+    
+=======
 <Layout>
     <Routes>
           <Route path="/" element={<Home/>}/>
@@ -30,6 +57,7 @@ function App() {
       </Routes>
   </Layout>
   </>
+>>>>>>> 9904a399d64e1b04f5fdc8adbdaf07ca4e898b5a
   );
 }
 
