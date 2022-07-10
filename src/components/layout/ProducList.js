@@ -25,6 +25,15 @@ const ProducList = () => {
             console.log(error)
         }
     }
+    //ver posrque no pushea nada de datos.
+    // const postOrders = async () => {
+    //      try {
+    //         const response = await axios.post('http://localhost:4000/api/v1/order');
+    //         setCart(response.data);
+    //     } catch (error) {
+    //         console.log(error)
+    //     }
+    // }
     useEffect (() => {
         getProducts();
       
@@ -33,6 +42,7 @@ const ProducList = () => {
     const handleClick = (product) => {
         cart.push(product);
         console.log(cart);
+        postOrders();
 
       
     }
