@@ -133,7 +133,7 @@ const Header = () => {
                     >
                       <li>
                         {" "}
-                        <Link to="/categoria#Mouse" className="dropdown-item">
+                        <Link to="/profile" className="dropdown-item">
                           <p>Editar perfil</p>
                         </Link>{" "}
                       </li>
@@ -163,7 +163,7 @@ const Header = () => {
                     >
                       <li>
                         {" "}
-                        <Link to="/categoria#Mouse" className="dropdown-item">
+                        <Link to="/profile" className="dropdown-item">
                           <p>Editar perfil</p>
                         </Link>{" "}
                       </li>
