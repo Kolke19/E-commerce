@@ -12,20 +12,19 @@ import Layout from './components/Layout';
 import AdminPanel from './pages/adminpanel';
 import Login from './components/Login';
 import UserPanel from './pages/userpanel';
-import LoadingSpinner from './components/LoadingSpinner';
-
+import Register from './pages/Register';
 
 
 function App() {
   return (
     <>
-        <LoadingSpinner/>
 <Layout>
     <Routes>
           <Route path="/" element={<Home/>}/>
           <Route path="/producto" element={<TemplateProduct/>}/>
           <Route path="/categoria" element={<TemplateCategory/>}/>
           <Route path="/login" element={<Login/>}/>
+          <Route path="/register" element={<Register/>}/>
           <Route path="/profile" element={<UserPanel/>}/>
           <Route path="/wp-admin" element={<AdminPanel/>}/>
       </Routes>
