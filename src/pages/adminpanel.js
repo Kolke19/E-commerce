@@ -1,6 +1,7 @@
 import ListarProducts from "../components/listarProducts";
 import ListarUser from "../components/listarUsers";
 
+
 const AdminPanel = () =>{
 
     let logged = JSON.parse(localStorage.getItem('UserLogged'));
