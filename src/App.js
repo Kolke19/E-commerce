@@ -14,18 +14,27 @@ import Register from './pages/Register';
 import AuthState from './context/AuthState';
 import Private from './pages/Private';
 import PrivateRoute from './routes/PrivateRoute';
-import SearchNavbar from './pages/SearchNavbar';
+import ProducList from './components/layout/ProducList';
+import { useState } from 'react';
+// import SearchNavbar from './pages/SearchNavbar';
+// import ProducList from './components/layout/ProducList';
 
 
 function App() {
+  const [show, setShow] = useState(true);
   return (
     <>
     <AuthState>
         <Layout>
+            <Home setShow={setShow}/>
+            {
+              show ? <ProducList/> : "Cart"
+            }
+            <ProducList/>
             <Routes>
-              <Route path='/' element={<Home/>}/>
+              {/* <Route path='/' element={<Home/>}/> */}
               <Route path='/register' element={<Register/>}/>
-              <Route path='/searchnav' element={<SearchNavbar/>}/>
+              {/* <Route path='/searchnav' element={<SearchNavbar/>}/> */}
               <Route path='/private'element={
                 <PrivateRoute>
                   <Private/>
