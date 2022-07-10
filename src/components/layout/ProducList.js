@@ -42,7 +42,7 @@ const ProducList = () => {
     const handleClick = (product) => {
         cart.push(product);
         console.log(cart);
-        postOrders();
+        // postOrders();
 
       
     }
