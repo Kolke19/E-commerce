@@ -1,0 +1,28 @@
+.profile_info{
+    background-color: #fff;
+    border-radius: 1rem;
+    box-shadow: 0 0 9px rgb(185, 185, 185);
+    margin: 0 auto;
+}
+
+.img_profile{
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid rgb(234, 234, 234);
+    box-shadow: 0 0 9px rgb(123, 123, 123);
+    cursor: pointer;
+}
+
+.info_user{
+    padding-left: 1rem;
+    border-radius: 1rem;
+}
+
+.change-password
+{
+    color: #00a0e1;
+    margin:0;
+    cursor: pointer;
+}

@@ -1,40 +1,36 @@
-//DEPENDENCIES
-import 'bootstrap/dist/css/bootstrap.min.css';
-import {Routes, Route} from 'react-router-dom'
-
-// import{routes, route, useLocation, useNavigate, useParams} from "react-router-dom";
 import './Apps.css';
-//PAGES
+import {Routes,Route} from "react-router-dom"
 
-//COMPONENTS
-import Layout from "./components/layout/Layout";
-import Home from './pages/Home';
-import Register from './pages/Register';
-//backend context 
-import AuthState from './context/AuthState';
-import Private from './pages/Private';
-import PrivateRoute from './routes/PrivateRoute';
-// import { Form } from 'react-bootstrap';
-// import Footer from './components/Footer';
+
+
+/* PAGES */
+
+import TemplateProduct from "./pages/templateProduct";
+import Home from './pages/home';
+import TemplateCategory from './pages/templateCategory';
+import Layout from './components/Layout';
+import AdminPanel from './pages/adminpanel';
+import Login from './components/Login';
+import UserPanel from './pages/userpanel';
+import LoadingSpinner from './components/LoadingSpinner';
+
+
 
 function App() {
   return (
     <>
-    <AuthState>
-        <Layout>
-            <Routes>
-              <Route path='/' element={<Home/>}/>
-              <Route path='/register' element={<Register/>}/>
-              <Route path='/private'element={
-                <PrivateRoute>
-                  <Private/>
-                </PrivateRoute>
-                } />
-           </Routes>
-         </Layout>
-    </AuthState>
-    </>
-    
+        <LoadingSpinner/>
+<Layout>
+    <Routes>
+          <Route path="/" element={<Home/>}/>
+          <Route path="/producto" element={<TemplateProduct/>}/>
+          <Route path="/categoria" element={<TemplateCategory/>}/>
+          <Route path="/login" element={<Login/>}/>
+          <Route path="/profile" element={<UserPanel/>}/>
+          <Route path="/wp-admin" element={<AdminPanel/>}/>
+      </Routes>
+  </Layout>
+  </>
   );
 }
 

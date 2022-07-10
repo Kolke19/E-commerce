@@ -1,0 +1,12 @@
+.form{
+    background-color: #fff;
+    padding: 4rem;
+    box-shadow: 0 0px 12px rgb(172, 172, 172);
+    border-radius: 2rem;
+    margin: 0 auto;
+}
+
+.logo{
+    width: 10rem;
+}
+

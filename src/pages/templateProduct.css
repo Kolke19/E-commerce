@@ -1,0 +1,39 @@
+.product-container{
+    background-color: #fff;
+    padding: 3rem;
+    border-radius: 2%;
+    box-shadow: 0 0 8px rgb(184, 182, 182);
+}
+
+
+.product-img{
+    width: 22rem;
+    transition: transform 0.5s ease;
+}
+
+.product-img:hover{
+   transform: scale(1.15);
+}
+
+
+.title-product{
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+
+.box-comment{
+    height: 10rem;
+    resize: none;
+}
+
+.profile-img{
+    width: 3rem;
+    height: 3rem;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.title-category{
+    margin-bottom: -3rem;
+}
