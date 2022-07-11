@@ -129,6 +129,7 @@ useEffect (() => {
       </FormGroup>  
       <FormGroup>
        <FormLabel>Contraseña</FormLabel>
+       
       <FormControl 
       type="password"
       name='password'
@@ -138,6 +139,10 @@ useEffect (() => {
       minLength='8'
       maxLength='30'
       />
+
+      <button className='input-group-text bg-dark text-light'>
+        show
+      </button>
       <p id='paragraph-styles'>{errors.password}</p>
       </FormGroup> 
 
