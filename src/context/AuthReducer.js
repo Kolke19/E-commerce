@@ -3,7 +3,8 @@ import {
     GET_USER,
     REGISTER_SUCCES,
     REGISTER_ERROR,
-    LOGOUT
+    LOGOUT,
+    LOGIN_SUCCESS
 } from '../types'
 
 
@@ -12,6 +13,7 @@ import {
 const authReducer = (state, action) => {
     switch(action.type) {
         case REGISTER_SUCCES:
+            case LOGIN_SUCCESS:
             return {
                 ...state,
                 isAuth: true,

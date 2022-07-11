@@ -13,7 +13,8 @@ import {//acciones
     GET_USER,
     REGISTER_ERROR,
     REGISTER_SUCCES,
-    LOGOUT
+    LOGOUT,
+    LOGIN_SUCCESS
 } from '../types'
 
 
@@ -51,6 +52,17 @@ const getUser = async () => {
         console.log(error);
     }
 }
+const login = async (data) => {
+    try {
+      const response = await clientAxios.post('http://localhost:4000/api/v1/auth/login', data);
+      dispatch({ type: LOGIN_SUCCESS, payload: response.data });
+      localStorage.setItem('token', response.data.token);
+    } catch (error) {
+      throw error;
+    }
+  }
+
+
 
 const logout = () =>{ 
     localStorage.removeItem('token');
@@ -61,13 +73,15 @@ const logout = () =>{
             ...state,//hacemos esas propiedades salgan del objeto y se almacenen en un obj nuevo
             registerUser,
             getUser,
-            logout
+            logout,
+            login
         }}>
             {children}
 
         </AuthContext.Provider>
     )
 }
+
 
 export default  AuthState;
 
