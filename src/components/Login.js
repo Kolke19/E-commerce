@@ -3,7 +3,7 @@ import logo from "../assets/img/Logo.png";
 import {useState, useContext, useEffect} from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import AuthContext from "../context/AuthContext";
-import axios from "axios";
+// import axios from "axios";
 const Login = () => {
   // const URL_API = "http://localhost:4000/Usuarios";
   // let logged = JSON.parse(localStorage.getItem('UserLogged'));

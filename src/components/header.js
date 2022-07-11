@@ -189,10 +189,12 @@ const Header = () => {
                   <button className="btn btn-outline-light me-2" type="submit">
                     Login
                   </button>
-                </Link>
+                </Link >
+                <Link to="/register">
                 <button className="btn btn-light" type="submit">
                   Registro
                 </button>
+                </Link>
               </form>
             )}
           </div>

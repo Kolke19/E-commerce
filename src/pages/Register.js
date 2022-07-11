@@ -79,12 +79,12 @@ const handleOnSubmit = e => {
 };
 
 
-useEffect (() => {
-  if(isAuth) {
-    navigate('/private')
-  }
+// useEffect (() => {
+//   if(isAuth) {
+//     navigate('/private')
+//   }
 
-}, [isAuth])
+// }, [isAuth])
 
   return (
     <>
