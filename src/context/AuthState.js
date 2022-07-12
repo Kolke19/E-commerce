@@ -2,6 +2,7 @@ import { useReducer } from "react";
 
 import AuthContext from "./AuthContext";
 
+
 import AuthReducer from "./AuthReducer";
 
 import clientAxios from "../config/axios";
@@ -88,9 +89,17 @@ const login = async (data) => {
    }
 
  const deleteProduct = async (id) => {
-    console.log("bryan puto ",id)
     try {
         const res = await clientAxios.delete(`http://localhost:4000/api/v1/products/${id}`);
+        res && await getProducts();
+        
+    } catch (error) {
+        throw error;
+    }
+   }
+    const updateProduct = async (id) => {
+    try {
+        const res = await clientAxios.put(`http://localhost:4000/api/v1/products/${id}`);
         res && await getProducts();
         
     } catch (error) {
@@ -113,7 +122,8 @@ const logout = () =>{
             login,
             createProduct,
             deleteProduct,
-            getProducts
+            getProducts,
+            updateProduct
         }}>
             {children}
 

@@ -1,17 +1,18 @@
 import { useEffect } from "react";
 
-const ProductRow = ({product,prueba,handleGetId,setGetIDEdit}) =>{
+const ProductRow = ({product,prueba,handleGetId,setGetIDEdit, setFormEdit}) =>{
 
 
 
     const handleGetIdEdit =  () => {
         setGetIDEdit(product._id);
+        setFormEdit(product)
+        console.log("product A", product)
       };
 
-      useEffect(() => {
-        console.log('c1', product)
+      // useEffect(() => {
       
-      }, [])
+      // }, [])
       
 
       
@@ -36,8 +37,7 @@ const ProductRow = ({product,prueba,handleGetId,setGetIDEdit}) =>{
                     >
                       <i
                         className="bi bi-pencil fs-5"
-                        id={product.id}
-                        onClick={()=>prueba(product.id)}
+                        id={product._id}
                         data-bs-toggle="modal"
                         data-bs-target="#exampleModal3"
                       ></i>

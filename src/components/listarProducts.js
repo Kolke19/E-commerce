@@ -6,7 +6,7 @@ import AuthContext from "../context/AuthContext";
 
 const ListarProducts = () => {
 
-  const {createProduct, deleteProduct} = useContext(AuthContext);
+  const {createProduct, deleteProduct, updateProduct} = useContext(AuthContext);
 
   const URL = "http://localhost:4000/api/v1/products";
  
@@ -72,15 +72,15 @@ const ListarProducts = () => {
  const [getIDDelete, setGetIDDelete] = useState();
 
  useEffect(() => {
-   console.log('b5', getIDDelete);
+
  
  }, [getIDDelete])
  
 
   const handleGetId = (e) => {
-    console.log('c3', e.target);
+
     setGetIDDelete(e.target.id);
-    console.log("qwue mierda es esto",e.target._id)
+
   };
   const handleDelete =  () => 
   {
@@ -95,45 +95,54 @@ const ListarProducts = () => {
 
 
 
-//   const [getIDEdit, setGetIDEdit] = useState(null);
-//   const [formEdit, setFormEdit] = useState ({name: "",
-//   price: 0,
-//   categoria: "",
-//   destacado: "",
-//   descripcion: "",
-//   img: "",
-// });
+  const [getIDEdit, setGetIDEdit] = useState(null);
+  const [formEdit, setFormEdit] = useState ({
+    name: "",
+    image: "",
+    brand: "",
+    description: "",
+    price: 0,
+    stock: "",
+    isInOffer: false,
+    category :""
+});
 
 
-// const handleChangeEdit = (e) => {
-//   setFormEdit({
-//     ...formEdit,
-//     [e.target.name]: e.target.value,
-//   });
-// };
 
 
-  // const handleEdit = async (e) => {
-  //   e.preventDefault();
-  //   if (
-  //     formEdit.name === "" ||
-  //     formEdit.price === 0 ||
-  //     formEdit.categoria === "" ||
-  //     formEdit.destacado === "" ||
-  //     formEdit.descripcion === "" ||
-  //     formEdit.img === ""
-  //   ) {
-  //     setError(
-  //       <p className="text-danger text-center">
-  //         Todos los campos son obligatorios
-  //       </p>
-  //     );
-  //     return;
-  //   }
+const handleChangeEdit = (e) => {
+  setFormEdit({
+    ...formEdit,
+    [e.target.name]: e.target.value,
+  });
+};
 
-  //   const response = await axios.put(`${URL}/${getIDEdit}`, formEdit);
-  //   window.location.reload();
-  // };
+
+const handleEdit = async (e) => {
+  e.preventDefault();
+  if (
+    formEdit.name === "" ||
+    formEdit.price === 0 ||
+    formEdit.image === "" ||
+    formEdit.brand === "" ||
+    formEdit.description === "" ||
+    formEdit.stock === "" ||
+    formEdit.isInOffer === "" ||
+    formEdit.category === ""
+    ) {
+      setError(
+        <p className="text-danger text-center">
+          Todos los campos son obligatorios
+        </p>
+      );
+      return;
+    }
+  //   formEdit();
+   updateProduct(getIDEdit)
+   
+    // const response = await axios.put(`${URL}/${getIDEdit}`, formEdit);
+    window.location.reload();
+  };
  
 
   return (
@@ -171,7 +180,7 @@ const ListarProducts = () => {
             <tbody>
             {listProduct.map((e) => (
               
-            <ProductRow key={e._id} product={e}  handleGetId={handleGetId}  /*  prueba={prueba}getIDEdit={getIDEdit}  setGetIDEdit={setGetIDEdit} */ />
+            <ProductRow key={e._id} product={e} setFormEdit={setFormEdit} handleGetId={handleGetId}  setGetIDEdit={setGetIDEdit}  />
             ))} 
             </tbody>
           </table>
@@ -253,7 +262,7 @@ const ListarProducts = () => {
                   <option>Fuente</option>
                   <option>Joystick</option>
                 </select>
-                <label className="form-label">Destacado</label>
+                <label className="form-label">En oferta</label>
                 <select
                   name="isInOffer"
                   className="form-select  mb-3"
@@ -356,7 +365,7 @@ const ListarProducts = () => {
         </div>
       </div>
 
-      {/* <div
+       <div
         className="modal fade"
         id="exampleModal3"
         aria-labelledby="exampleModalLabel"
@@ -397,9 +406,9 @@ const ListarProducts = () => {
                 />
                 <label className="form-label">Categoria</label>
                 <select
-                  name="categoria"
+                  name="category"
                   className="form-select mb-3"
-                  value={formEdit.categoria}
+                  value={formEdit.category}
                   onChange={handleChangeEdit}
                 >
                   <option>Elige una categoria</option>
@@ -409,11 +418,11 @@ const ListarProducts = () => {
                   <option>Fuente</option>
                   <option>Joystick</option>
                 </select>
-                <label className="form-label">Destacado</label>
+                <label className="form-label">Esta en oferta</label>
                 <select
-                  name="destacado"
+                  name="isInOffer"
                   className="form-select  mb-3"
-                  value={formEdit.destacado}
+                  value={formEdit.isInOffer}
                   onChange={handleChangeEdit}
                 >
                   <option>Elige una opcion</option>
@@ -422,20 +431,20 @@ const ListarProducts = () => {
                 </select>
                 <label className="form-label">Descripcion</label>
                 <input
-                  name="descripcion"
+                  name="description"
                   className="w-100 mb-3 form-control mb-3"
                   type="text"
                   placeholder="Ingresa la descripcion del producto"
-                  value={formEdit.descripcion}
+                  value={formEdit.description}
                   onChange={handleChangeEdit}
                 />
                 <label className="form-label">Enlace de imagen</label>
                 <input
-                  name="img"
+                  name="image"
                   className="w-100 mb-3 form-control mb-3"
                   type="text"
                   placeholder="Ingrese el enlace de la imagen del producto"
-                  value={formEdit.img}
+                  value={formEdit.image}
                   onChange={handleChangeEdit}
                 />
                 {error}
@@ -459,7 +468,7 @@ const ListarProducts = () => {
             </div>
           </div>
         </div>
-      </div>  */}
+      </div>  
     </>
   );
 };
