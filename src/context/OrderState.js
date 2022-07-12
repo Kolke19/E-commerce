@@ -63,7 +63,7 @@ import React from 'react'
 
   const updateOrder = async order => {
     try {
-        const res = await clientAxios.put(`http://localhost:4000/api/v1/order ${order._id}`, order);
+        const res = await clientAxios.put(`http://localhost:4000/api/v1/order/${order._id}`, order);
         res && await getOrders();
     } catch (error) {
         throw error;
@@ -72,7 +72,7 @@ import React from 'react'
 
     const deleteOrder = async orderId => {
     try {
-        const res = await clientAxios.delete(`http://localhost:4000/api/v1/order ${orderId}`);
+        const res = await clientAxios.delete(`http://localhost:4000/api/v1/order/${orderId}`);
         res && await getOrders();
     } catch (error) {
         throw error;

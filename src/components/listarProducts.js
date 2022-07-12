@@ -6,7 +6,7 @@ import AuthContext from "../context/AuthContext";
 
 const ListarProducts = () => {
 
-  const {createProduct} = useContext(AuthContext);
+  const {createProduct, deleteProduct} = useContext(AuthContext);
 
   const URL = "http://localhost:4000/api/v1/products";
  
@@ -66,8 +66,72 @@ const ListarProducts = () => {
     // } 
     console.log(form);
     createProduct(form);
+  }
 
+
+ const [getIDDelete, setGetIDDelete] = useState();
+
+ useEffect(() => {
+   console.log('b5', getIDDelete);
+ 
+ }, [getIDDelete])
+ 
+
+  const handleGetId = (e) => {
+    console.log(e.target);
+    setGetIDDelete(e.target.id);
   };
+  const handleDelete =  () => 
+  {
+    deleteProduct(getIDDelete)
+     console.log("jorgito gay",getIDDelete)
+    // window.location.reload();
+  };
+  // funciones para delete y update
+
+
+
+
+
+//   const [getIDEdit, setGetIDEdit] = useState(null);
+//   const [formEdit, setFormEdit] = useState ({name: "",
+//   price: 0,
+//   categoria: "",
+//   destacado: "",
+//   descripcion: "",
+//   img: "",
+// });
+
+
+// const handleChangeEdit = (e) => {
+//   setFormEdit({
+//     ...formEdit,
+//     [e.target.name]: e.target.value,
+//   });
+// };
+
+
+  // const handleEdit = async (e) => {
+  //   e.preventDefault();
+  //   if (
+  //     formEdit.name === "" ||
+  //     formEdit.price === 0 ||
+  //     formEdit.categoria === "" ||
+  //     formEdit.destacado === "" ||
+  //     formEdit.descripcion === "" ||
+  //     formEdit.img === ""
+  //   ) {
+  //     setError(
+  //       <p className="text-danger text-center">
+  //         Todos los campos son obligatorios
+  //       </p>
+  //     );
+  //     return;
+  //   }
+
+  //   const response = await axios.put(`${URL}/${getIDEdit}`, formEdit);
+  //   window.location.reload();
+  // };
  
 
   return (
@@ -104,7 +168,7 @@ const ListarProducts = () => {
             </thead>
             <tbody>
             {listProduct.map((e) => (
-            <ProductRow key={e.id} product={e} /*  prueba={prueba}getIDEdit={getIDEdit}   handleGetId={handleGetId} setGetIDEdit={setGetIDEdit} */ />
+            <ProductRow key={e.id} product={e}  handleGetId={handleGetId}  /*  prueba={prueba}getIDEdit={getIDEdit}  setGetIDEdit={setGetIDEdit} */ />
             ))} 
             </tbody>
           </table>
@@ -242,7 +306,7 @@ const ListarProducts = () => {
       </div>
 
 
-      {/* 
+      
       <div
         className="modal fade"
         id="exampleModal2"
@@ -289,7 +353,7 @@ const ListarProducts = () => {
         </div>
       </div>
 
-      <div
+      {/* <div
         className="modal fade"
         id="exampleModal3"
         aria-labelledby="exampleModalLabel"
@@ -392,7 +456,7 @@ const ListarProducts = () => {
             </div>
           </div>
         </div>
-      </div> */}
+      </div>  */}
     </>
   );
 };

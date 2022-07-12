@@ -8,6 +8,7 @@ import clientAxios from "../config/axios";
 
 import authToken from "../config/token";
 
+import { useState } from "react";
 import {//acciones 
     IS_LOADING,
     GET_USER,
@@ -27,7 +28,11 @@ const AuthState = ({children}) => {
     }
     const [state, dispatch] = useReducer (AuthReducer, initialState);
 //funcion de registro del usuario
-
+const initialValue ={
+    products: [],
+    product: []
+}
+const [estado, setEstado] = useState(initialValue)
 const registerUser = async (data) => { //funciones asincronas siempre tienen un try and catch.
     try {
         const response = await clientAxios.post('http://localhost:4000/api/v1/auth/signup', data)
@@ -64,6 +69,14 @@ const login = async (data) => {
       throw error;
     }
   }
+  const getProducts = async () => {
+    try {
+        const res = await clientAxios.get('http://localhost:4000/api/v1/products');
+        res && setEstado({...estado, products: res.data.products});
+    } catch (error) {
+        throw error;
+    }
+   }
 
    const createProduct = async (data) => {
     try {
@@ -73,6 +86,18 @@ const login = async (data) => {
         throw error;
     }
    }
+
+ const deleteProduct = async (id) => {
+    console.log("bryan puto ",id)
+    try {
+        const res = await clientAxios.delete(`http://localhost:4000/api/v1/products/${id}`);
+        res && await getProducts();
+        
+    } catch (error) {
+        throw error;
+    }
+   }
+
 
 
 const logout = () =>{ 
@@ -86,7 +111,9 @@ const logout = () =>{
             getUser,
             logout,
             login,
-            createProduct
+            createProduct,
+            deleteProduct,
+            getProducts
         }}>
             {children}
 
