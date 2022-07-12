@@ -78,14 +78,16 @@ const ListarProducts = () => {
  
 
   const handleGetId = (e) => {
-    console.log(e.target);
+    console.log('c3', e.target);
     setGetIDDelete(e.target.id);
+    console.log("qwue mierda es esto",e.target._id)
   };
   const handleDelete =  () => 
   {
+    console.log('c2', getIDDelete)
     deleteProduct(getIDDelete)
      console.log("jorgito gay",getIDDelete)
-    // window.location.reload();
+    window.location.reload();
   };
   // funciones para delete y update
 
@@ -168,7 +170,8 @@ const ListarProducts = () => {
             </thead>
             <tbody>
             {listProduct.map((e) => (
-            <ProductRow key={e.id} product={e}  handleGetId={handleGetId}  /*  prueba={prueba}getIDEdit={getIDEdit}  setGetIDEdit={setGetIDEdit} */ />
+              
+            <ProductRow key={e._id} product={e}  handleGetId={handleGetId}  /*  prueba={prueba}getIDEdit={getIDEdit}  setGetIDEdit={setGetIDEdit} */ />
             ))} 
             </tbody>
           </table>

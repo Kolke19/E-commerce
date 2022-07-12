@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 const ProductRow = ({product,prueba,handleGetId,setGetIDEdit}) =>{
 
 
@@ -5,6 +7,12 @@ const ProductRow = ({product,prueba,handleGetId,setGetIDEdit}) =>{
     const handleGetIdEdit =  () => {
         setGetIDEdit(product._id);
       };
+
+      useEffect(() => {
+        console.log('c1', product)
+      
+      }, [])
+      
 
       
 
@@ -23,7 +31,7 @@ const ProductRow = ({product,prueba,handleGetId,setGetIDEdit}) =>{
                   <td>
                     <button
                       className="btn btn-primary btn_table "
-                      id={product.id}
+                      id={product._id}
                      onClick={handleGetIdEdit}
                     >
                       <i
@@ -38,13 +46,13 @@ const ProductRow = ({product,prueba,handleGetId,setGetIDEdit}) =>{
                     <button
                       className="btn btn-danger btn_table"
                       data-bs-toggle="modal"
-                      id={product.id}
+                      id={product._id}
                       onClick={handleGetId}
                       data-bs-target="#exampleModal2"
                     >
                       <i
                         className="bi bi-trash fs-5"
-                        id={product.id}
+                        id={product._id}
                         onClick={handleGetId}
                         data-bs-toggle="modal"
                         data-bs-target="#exampleModal2"
