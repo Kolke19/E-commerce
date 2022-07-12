@@ -4,11 +4,12 @@ import logo from "../assets/img/Logo.png";
 
 const Header = () => {
   const cerrarsession = () => {
-    localStorage.removeItem("UserLogged");
+    localStorage.removeItem("userLogged");
+    localStorage.removeItem("token");
   
   };
 
-  let logged = JSON.parse(localStorage.getItem("UserLogged"));
+  let logged = JSON.parse(localStorage.getItem("userLogged"));
 
   return (
     <>
@@ -123,10 +124,10 @@ const Header = () => {
                   >
                     <div className="user_Data">
                    <img className="img_navbar d-inline me-2" src={logged.img} alt="photo_perfil"/>
-                   <p className="user_name_navbar">{logged.name}</p>
+                   <p className="user_name_navbar">{logged.username}</p>
                    </div>
                   </Link>
-                  {logged.admin === true ? (
+                  {logged.isAdmin === true ? (
                     <ul
                       className="dropdown-menu p-3"
                       aria-labelledby="navbarDropdown"

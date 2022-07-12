@@ -30,7 +30,7 @@ const TemplateProduct = () => {
           <div className="col-12 col-md-6 col-lg-6 col-xl-4  text-center">
             <img
               className="product-img img-fluid"
-              src={product.image}
+              src={product.img}
               alt="product"
             />
           </div>

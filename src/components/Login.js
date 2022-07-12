@@ -6,10 +6,10 @@ import AuthContext from "../context/AuthContext";
 // import axios from "axios";
 const Login = () => {
   // const URL_API = "http://localhost:4000/Usuarios";
-  // let logged = JSON.parse(localStorage.getItem('UserLogged'));
-  // if(logged){
-  //     window.location.href ="/"
-  // }
+  let logged = JSON.parse(localStorage.getItem('userLogged'));
+  if(logged){
+      window.location.href ="/"
+  }
   const navigate = useNavigate();
   const {login,isAuth} = useContext(AuthContext);
   const [formLogin, setFormLogin] = useState({
@@ -103,12 +103,12 @@ useEffect(()=>{
                   minLength="8"
                 />
                 {/* <p className="mt-3">
-                  {errors.password && (
-                    <span className="text-danger fw-bold">
-                      {errors.password}
-                    </span>
-                  )}
                 </p> */}
+                {errors.password && (
+                  <span className="text-danger fw-bold">
+                    {errors.password}
+                  </span>
+                )}
                 <label to="floatingPassword">password</label>
               </div>
               <div className="mt-4">
