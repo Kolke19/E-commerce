@@ -57,6 +57,9 @@ const login = async (data) => {
       const response = await clientAxios.post('http://localhost:4000/api/v1/auth/login', data);
       dispatch({ type: LOGIN_SUCCESS, payload: response.data });
       localStorage.setItem('token', response.data.token);
+       localStorage.setItem('userLogged',JSON.stringify(response.data.data.user) );
+       console.log(response.data.data.user);
+
     } catch (error) {
       throw error;
     }

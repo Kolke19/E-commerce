@@ -44,7 +44,7 @@ function App() {
             <Routes>
               {/* <Route path='/' element={<Home/>}/> */}
               {/* <Route path='/register' element={<Register/>}/> */}
-              {/* <Route path='/searchnav' element={<SearchNavbar/>}/> */}
+              <Route path='/searchnav' element={<SearchNavbar/>}/>
                <Route path="/" element={<Home />} />
                 <Route path="/producto" element={<TemplateProduct />} />
                 <Route path="/categoria" element={<TemplateCategory />} />
