@@ -10,8 +10,8 @@ const AdminPanel = () =>{
     }
     return(
         <>
-        {/* <ListarProducts/>
-        <ListarUser/> */}
+        <ListarProducts/>
+       {/*  <ListarUser/> */}
         </>
     )
 }

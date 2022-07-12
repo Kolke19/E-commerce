@@ -65,6 +65,14 @@ const login = async (data) => {
     }
   }
 
+   const createProduct = async (data) => {
+    try {
+        const res = await clientAxios.post('http://localhost:4000/api/v1/products',data);
+        
+    } catch (error) {
+        throw error;
+    }
+   }
 
 
 const logout = () =>{ 
@@ -77,7 +85,8 @@ const logout = () =>{
             registerUser,
             getUser,
             logout,
-            login
+            login,
+            createProduct
         }}>
             {children}
 

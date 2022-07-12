@@ -3,7 +3,7 @@ const ProductRow = ({product,prueba,handleGetId,setGetIDEdit}) =>{
 
 
     const handleGetIdEdit =  () => {
-        setGetIDEdit(product.id);
+        setGetIDEdit(product._id);
       };
 
       
@@ -13,12 +13,13 @@ const ProductRow = ({product,prueba,handleGetId,setGetIDEdit}) =>{
 
 
       
-                <tr key={product.id}>
-                  <th>{product.id}</th>
+                <tr key={product._id}>
+                  <th>{product._id}</th>
                   <td>{product.name}</td>
                   <td>{product.price}</td>
-                  <td>{product.categoria}</td>
-                  <td>{product.destacado.toString()}</td>
+                  <td>{product.category}</td>
+                  <td>{product.isInOffer.toString()}</td>
+                  <td>{product.stock}</td>
                   <td>
                     <button
                       className="btn btn-primary btn_table "

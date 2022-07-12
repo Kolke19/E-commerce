@@ -1,17 +1,18 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import "./listproducts.css";
 import ProductRow from "./productRow";
-
+import AuthContext from "../context/AuthContext";
 
 const ListarProducts = () => {
 
+  const {createProduct} = useContext(AuthContext);
 
-  const URL = "http://localhost:4000/Articulos";
+  const URL = "http://localhost:4000/api/v1/products";
  
 
 
-  const getData = async (id) => {
+  const getData = async () => {
     const res = await axios.get(URL);
     return res;
   };
@@ -20,22 +21,22 @@ const ListarProducts = () => {
 
   useEffect(() => {
     getData().then((res) => {
-      setListProduct(res.data);
+      setListProduct(res.data.products);
     });
   }, []);
+  
 
-
-
-
-
-  const [form, setForm] = useState({
+  const initialValue = {
     name: "",
+    image: "",
+    brand: "",
+    description: "",
     price: 0,
-    categoria: "",
-    destacado: false,
-    descripcion: "",
-    img: "",
-  });
+    stock: "",
+    isInOffer: false,
+    category :""
+  }
+  const [form, setForm] = useState(initialValue);
 
   const [error, setError] = useState(null);
 
@@ -46,113 +47,28 @@ const ListarProducts = () => {
     });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit =  e => {
     e.preventDefault();
-    if (
-      form.name === "" ||
-      form.price === 0 ||
-      form.categoria === "" ||
-      form.destacado === "" ||
-      form.descripcion === "" ||
-      form.img === ""
-    ) {
-      setError(
-        <p className="text-danger text-center">
-          *Todos los campos son obligatorios*
-        </p>
-      );
-      return;
-    }
-    setError(null);
-    const res = await axios.post(URL, form);
-    setForm({
-      name: "",
-      price: 0,
-      categoria: "",
-      destacado: false,
-      descripcion: "",
-      img: "",
-    });
-    window.location.reload();
+    // if (
+    //   form.name === "" ||
+    //   form.price === 0 ||
+    //   form.category === "" ||
+    //   form.isInOffer === "" ||
+    //   form.description === "" ||
+    //   form.img === ""
+    // ) {
+    //   setError(
+    //     <p className="text-danger text-center">
+    //       *Todos los campos son obligatorios*
+    //     </p>
+    //   );
+    //   return;
+    // } 
+    console.log(form);
+    createProduct(form);
+
   };
-
-
-
-
-
-
-
-
-  const [getIDDelete, setGetIDDelete] = useState();
-
-  const handleGetId = (e) => {
-    setGetIDDelete(e.target.id);
-  };
-
-
-  const handleDelete = async (e) => {
-    const response = await axios.delete(`${URL}/${getIDDelete}`);
-    window.location.reload();
-  };
-
-
-
-
-  const [getIDEdit, setGetIDEdit] = useState(null);
-  const [formEdit, setFormEdit] = useState ({name: "",
-  price: 0,
-  categoria: "",
-  destacado: "",
-  descripcion: "",
-  img: "",
-});
-
-
-
-const handleChangeEdit = (e) => {
-  setFormEdit({
-    ...formEdit,
-    [e.target.name]: e.target.value,
-  });
-};
-
-
-  const handleEdit = async (e) => {
-    e.preventDefault();
-    if (
-      formEdit.name === "" ||
-      formEdit.price === 0 ||
-      formEdit.categoria === "" ||
-      formEdit.destacado === "" ||
-      formEdit.descripcion === "" ||
-      formEdit.img === ""
-    ) {
-      setError(
-        <p className="text-danger text-center">
-          *Todos los campos son obligatorios*
-        </p>
-      );
-      return;
-    }
-
-    const response = await axios.put(`${URL}/${getIDEdit}`, formEdit);
-    window.location.reload();
-  };
-
-
-  const prueba = async (id) =>{
-    const res = await axios.get(`${URL}/${id}`);
-        setFormEdit({
-          name: res.data.name,
-          price: res.data.price,
-          categoria: res.data.categoria,
-          destacado: res.data.destacado,
-          descripcion: res.data.descripcion,
-          img: res.data.img,
-        });  
-      }
-    
-
+ 
 
   return (
 
@@ -182,13 +98,14 @@ const handleChangeEdit = (e) => {
                 <th scope="col">Precio</th>
                 <th scope="col">Categoria</th>
                 <th scope="col">Destacado</th>
+                <th scope="col">Stock</th>
                 <th scope="col">Accion</th>
               </tr>
             </thead>
             <tbody>
             {listProduct.map((e) => (
-            <ProductRow key={e.id} product={e} prueba={prueba} getIDEdit={getIDEdit} handleGetId={handleGetId} setGetIDEdit={setGetIDEdit}/>
-            ))}
+            <ProductRow key={e.id} product={e} /*  prueba={prueba}getIDEdit={getIDEdit}   handleGetId={handleGetId} setGetIDEdit={setGetIDEdit} */ />
+            ))} 
             </tbody>
           </table>
         </div>
@@ -216,7 +133,7 @@ const handleChangeEdit = (e) => {
               ></button>
             </div>
             <div className="modal-body">
-              <form>
+              <form onSubmit={handleSubmit}>
                 <label className="form-label">Nombre</label>
                 <input
                   name="name"
@@ -226,20 +143,40 @@ const handleChangeEdit = (e) => {
                   value={form.name}
                   onChange={handleChange}
                 />
+
+                <label className="form-label">Marca</label>
+                <input
+                  name="brand"
+                  className="w-100 mb-3 form-control"
+                  type="text"
+                  placeholder="Ingresa el nombre del producto"
+                  value={form.brand}
+                  onChange={handleChange}
+                />
+                  <label className="form-label">Imagen</label>
+                <input
+                  name="image"
+                  className="w-100 mb-3 form-control"
+                  type="text"
+                  placeholder="Ingresa el nombre del producto"
+                  value={form.image}
+                  onChange={handleChange}
+                />
+
                 <label className="form-label">Precio</label>
                 <input
                   name="price"
                   className="w-100 mb-3 form-control"
                   type="number"
-                  placeholder="Ingresa el precio del producto"
+                  placeholder="Ingresa la imagen"
                   value={form.price}
                   onChange={handleChange}
                 />
                 <label className="form-label">Categoria</label>
                 <select
-                  name="categoria"
+                  name="category"
                   className="form-select mb-3"
-                  value={form.categoria}
+                  value={form.category}
                   onChange={handleChange}
                 >
                   <option>Elige una categoria</option>
@@ -251,9 +188,9 @@ const handleChangeEdit = (e) => {
                 </select>
                 <label className="form-label">Destacado</label>
                 <select
-                  name="destacado"
+                  name="isInOffer"
                   className="form-select  mb-3"
-                  value={form.destacado}
+                  value={form.isInOffer}
                   onChange={handleChange}
                 >
                   <option>Elige una opcion</option>
@@ -262,32 +199,35 @@ const handleChangeEdit = (e) => {
                 </select>
                 <label className="form-label">Descripcion</label>
                 <input
-                  name="descripcion"
+                  name="description"
                   className="w-100 mb-3 form-control mb-3"
                   type="text"
                   placeholder="Ingresa la descripcion del producto"
-                  value={form.descripcion}
+                  value={form.description}
                   onChange={handleChange}
                 />
-                <label className="form-label">Enlace de imagen</label>
+                <label className="form-label">stock</label>
                 <input
-                  name="img"
+                  name="stock"
                   className="w-100 mb-3 form-control mb-3"
-                  type="text"
-                  placeholder="Ingrese el enlace de la imagen del producto"
-                  value={form.img}
+                  type="number"
+                  placeholder="Ingrese el stock del producto"
+                  value={form.stock}
                   onChange={handleChange}
                 />
                 {error}
                 <button
                   type="submit"
                   className="btn btn-success"
-                  onClick={handleSubmit}
+                  
                 >
                   Guardar
                 </button>
               </form>
             </div>
+
+
+            
             <div className="modal-footer">
               <button
                 type="button"
@@ -300,6 +240,9 @@ const handleChangeEdit = (e) => {
           </div>
         </div>
       </div>
+
+
+      {/* 
       <div
         className="modal fade"
         id="exampleModal2"
@@ -449,7 +392,7 @@ const handleChangeEdit = (e) => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </>
   );
 };
