@@ -1,12 +1,15 @@
-import { useEffect } from "react";
-
-const ProductRow = ({product,prueba,handleGetId,setGetIDEdit, setFormEdit}) =>{
+import AuthContext from "../context/AuthContext";
 
 
+import { useContext } from "react";
+
+const ProductRow = ({product,handleGetId,setGetIDEdit, setFormEdit}) =>{
+const {updateProduct} = useContext(AuthContext);
 
     const handleGetIdEdit =  () => {
         setGetIDEdit(product._id);
         setFormEdit(product)
+        updateProduct();
         console.log("product A", product)
       };
 

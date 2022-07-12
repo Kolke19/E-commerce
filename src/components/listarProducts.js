@@ -138,7 +138,7 @@ const handleEdit = async (e) => {
       return;
     }
   //   formEdit();
-   updateProduct(getIDEdit)
+   
    
     // const response = await axios.put(`${URL}/${getIDEdit}`, formEdit);
     window.location.reload();
