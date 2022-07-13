@@ -53,7 +53,7 @@ function App() {
                 <Route path="/register" element={<Register />} />
                 <Route path="/profile" element={<UserPanel />} />
                 <Route path='/wp-admin'element={<AdminPanel/>}/> 
-              <Route path='/private'element={
+                <Route path='/private'element={
                 <PrivateRoute>
                 
                 </PrivateRoute>
