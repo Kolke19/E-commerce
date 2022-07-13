@@ -30,14 +30,14 @@ const [errors, setErrors] = useState({});
 
 const handleOnBlur = (e) =>{
   if(e.target.value === ""|| Number(e.target.value) === 0 
-   ) {console.log('estamos en la primera validacion')
+   ) {
       setErrors({
       ...errors,
       [e.target.name] : <p className='text-danger mt-3'>*Este campo es obligatorio*</p>
     });
   }else if (e.target.name === "email" && 
   !validationServices.validarEmail(e.target)
-  ) { console.log('estamos en la validacion de email')
+  ) { 
       setErrors({
       ...errors,
       [e.target.name] : `Formato de Email no valido`

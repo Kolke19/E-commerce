@@ -27,7 +27,7 @@ const InfoUser = () => {
     });
   }, []);
 
-  console.log(userLogged);
+ 
   const handleChangeUser = (e) => {
     setUserLogged({
       ...userLogged,

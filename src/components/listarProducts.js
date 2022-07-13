@@ -49,22 +49,6 @@ const ListarProducts = () => {
 
   const handleSubmit =  e => {
     e.preventDefault();
-    // if (
-    //   form.name === "" ||
-    //   form.price === 0 ||
-    //   form.category === "" ||
-    //   form.isInOffer === "" ||
-    //   form.description === "" ||
-    //   form.img === ""
-    // ) {
-    //   setError(
-    //     <p className="text-danger text-center">
-    //       *Todos los campos son obligatorios*
-    //     </p>
-    //   );
-    //   return;
-    // } 
-    console.log(form);
     createProduct(form);
     window.location.href ="/wp-admin"
   }
@@ -85,9 +69,9 @@ const ListarProducts = () => {
   };
   const handleDelete =  () => 
   {
-    console.log('c2', getIDDelete)
+   
     deleteProduct(getIDDelete)
-     console.log("jorgito gay",getIDDelete)
+    
     // window.location.reload();
   };
   // funciones para delete y update
@@ -159,7 +143,7 @@ const getInfoForm = async (id) =>{
     isInOffer: res.data.productById.isInOffer,
     category :res.data.productById.category
   })  
-console.log(res.data.productById)
+
 }
 
   return (

@@ -24,7 +24,7 @@ const TemplateProduct = () => {
   }, []);
 
 
-  console.log(window.location);
+  
 
   return (
     <>

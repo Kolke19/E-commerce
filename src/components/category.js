@@ -12,7 +12,7 @@ const Category = () => {
     setProducts(data.products);
   };
 
-  console.log(products)
+ 
 
   function getCategory(products, categoria) {
     products = products.filter((e) => e.category === categoria);

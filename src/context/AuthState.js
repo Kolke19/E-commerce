@@ -39,9 +39,9 @@ const registerUser = async (data) => { //funciones asincronas siempre tienen un 
         const response = await clientAxios.post('http://localhost:4000/api/v1/auth/signup', data)
         dispatch({type: REGISTER_SUCCES, payload: response.data});
         localStorage.setItem('token', response.data.token);
-        console.log(response)
+       
     } catch (error) {
-        console.log(error)
+        throw error;
     }
 };
 
@@ -52,10 +52,10 @@ const getUser = async () => {
             authToken(token);
         }
         const response = await clientAxios.get('http://localhost:4000/api/v1/auth/user');
-        console.log(response);
+       
         dispatch({type: GET_USER, payload: response.data});
     } catch (error) {
-        console.log(error);
+        throw error;
     }
 }
 const login = async (data) => {
@@ -64,7 +64,7 @@ const login = async (data) => {
       dispatch({ type: LOGIN_SUCCESS, payload: response.data });
       localStorage.setItem('token', response.data.token);
        localStorage.setItem('userLogged',JSON.stringify(response.data.data.user) );
-       console.log(response.data.data.user);
+      
      
     } catch (error) {
       throw error;
@@ -90,7 +90,6 @@ const login = async (data) => {
 
  const deleteProduct = async (id) => {
     try {
-        console.log("llega", clientAxios);
         const res = await clientAxios.delete(`http://localhost:4000/api/v1/products/${id}`);
         res && await getProducts();
         

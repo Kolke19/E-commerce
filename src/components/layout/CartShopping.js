@@ -18,28 +18,8 @@ const CartShopping = () => {
 
         useEffect(() => {
             getOrder("62cc7d8ad0785fe4b5fbddd4")
-            console.log("esta llegando",order);
         }, [])
 
-
-    // const getProducts = async () => {
-    //     try {
-    //         const response = await axios.get('http://localhost:4000/api/v1/products');
-    //         SetProducts(response.data.products);
-    //     } catch (error) {
-    //         console.log(error)
-    //     }
-    // }
-    // useEffect (() => {
-    //     getProducts();
-        
-    // }, [])
-    
-    // const handleClick = (product) => {
-    //     cart.push(product);
-    //     console.log(cart); 
-    // }
-    
     
     return (
         

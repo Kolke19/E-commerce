@@ -42,9 +42,8 @@ import React from 'react'
 
     const getOrder = async orderId => {
     try {
-        console.log("A1", orderId);
+        
         const res = await clientAxios.get(`http://localhost:4000/api/v1/orders/${orderId}`);
-        console.log("A4", res.data.order);
         res && setState({ ...state, order: res.data.order });
     } catch (error) {
         throw error;

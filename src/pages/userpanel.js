@@ -5,13 +5,10 @@ import {useNavigate}  from "react-router-dom"
 import InfoUser from "../components/infoUser";  
 
 const UserPanel = () => {
-  // let logged = JSON.parse(localStorage.getItem("userLogged"));
-  // if (!logged) {
-  //   window.location.href = "/";
-  // }
+ 
   const {isAuth, loading, getUser, token, user} = useContext(AuthContext);
     const navigate = useNavigate();
-    // console.log(user)
+    
     useEffect(() => {
       if(!isAuth && token) {
         getUser()

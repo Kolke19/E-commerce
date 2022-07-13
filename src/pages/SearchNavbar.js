@@ -23,9 +23,9 @@ const SearchNavbar = () => {
             const response = await axios.get('http://localhost:4000/api/v1/products');
             SetProducts(response.data.products);
             setTableProducts(response.data.products);
-            // console.log("tenemos el array con los productos",response.data);
+           
         } catch (error) {
-            console.log(error)
+            throw error;
         }
     }
     useEffect (() => {
