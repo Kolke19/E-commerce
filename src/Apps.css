@@ -36,18 +36,3 @@
     transform: rotate(360deg);
   }
 }
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Roboto";
-}
-body {
-    background-color: #f7f7f7;
-}
-
-/* .page-container{
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-} */

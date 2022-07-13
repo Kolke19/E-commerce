@@ -24,7 +24,7 @@ const Category = () => {
  function getOffert(products) {
     products = products.filter((e) => e.isInOffer === true);
     return products.map((e) => (
-      <Card key={e.id} img={e.image} name={e.name} price={e.price} id={e.id} isInOffer={e.destacado}/>
+      <Card key={e.id} img={e.image} name={e.name} price={e.price} id={e._id} featured={e.isInOffer}/>
     ));
   } 
 
@@ -44,15 +44,15 @@ const Category = () => {
         </div> 
         <div className="container mt-5">
           <h2 className="bg-dark text-light p-3  text-center rounded-pill">MOUSE</h2>
-          <div className="row">{getCategory(products, "monitor")}</div>
+          <div className="row">{getCategory(products, "Mouse")}</div>
         </div>
         <div className="container mt-5">
           <h2 className="bg-dark text-light p-3  text-center rounded-pill">TECLADO</h2>
-          <div className="row">{getCategory(products, "placa de video")}</div>
+          <div className="row">{getCategory(products, "Teclado")}</div>
         </div>
         <div className="container mt-5">
-          <h2 className="bg-dark text-light p-3  text-center rounded-pill">MONITOR</h2>
-          <div className="row">{getCategory(products, "monitor")}</div>
+          <h2 className="bg-dark text-light p-3  text-center rounded-pill">GPU</h2>
+          <div className="row">{getCategory(products, "GPU")}</div>
         </div>
       </section> 
     </>

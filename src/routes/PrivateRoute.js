@@ -1,6 +1,6 @@
 import { useContext, useEffect } from 'react';
 import AuthContext from '../context/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const PrivateRoute = ({children}) => {
 
@@ -18,7 +18,7 @@ const PrivateRoute = ({children}) => {
         navigate('/')
     }
    }, [isAuth])
-   if(loading) return <p>Se esta cargando el servicio..</p>
+   if(loading) return <p>Se esta cargando el servicio..</p> 
 
   return children;// componente hijo
 }

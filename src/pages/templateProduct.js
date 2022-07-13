@@ -4,8 +4,11 @@ import { Link } from "react-router-dom";
 import MenuCategory from "../components/MenuCategory";
 
 const TemplateProduct = () => {
-  const [product, setProduct] = useState([]);
 
+  let logged = JSON.parse(localStorage.getItem('userLogged'));
+
+
+  const [product, setProduct] = useState([]);
   const getProduct = async () => {
     const UrlProduct = window.location.hash.slice(1);
     const URL = `http://localhost:4000/api/v1/products/${UrlProduct}`;
@@ -48,18 +51,33 @@ const TemplateProduct = () => {
             </p>
             <p>{product.descripcion}</p>
           </div>
-          <div className="col-12 text-end">
+          {(logged) ?   <div className="col-12 text-end">
             <h1 className=" mb-4 mt-3 display-5">
               Precio:{" "}
               <span className="text-success fw-bold">$ {product.price}</span>
             </h1>
+        
             <button className="btn btn-outline-dark fs-4 mt-3">
               <i className="bi bi-basket"></i> Agregar al carrito
             </button>
             <button className="btn btn-dark ms-3 fs-4 btn-buy mt-3">
               <i className="bi bi-coin"></i> Comprar
             </button>
-          </div>
+          </div> :   <div className="col-12 text-end">
+            <h1 className=" mb-4 mt-3 display-5">
+              Precio:{" "}
+              <span className="text-success fw-bold">$ {product.price}</span>
+            </h1>
+            <Link to="/login">
+            <button className="btn btn-outline-dark fs-4 mt-3">
+              <i className="bi bi-basket"></i> Agregar al carrito
+            </button></Link>
+            <Link to="/login">
+            <button className="btn btn-dark ms-3 fs-4 btn-buy mt-3">
+              <i className="bi bi-coin"></i> Comprar
+            </button> </Link>
+          </div>}
+        
         </div>
         <div className="row mt-5">
           <div className="col-12">

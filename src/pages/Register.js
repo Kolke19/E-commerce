@@ -33,7 +33,7 @@ const handleOnBlur = (e) =>{
    ) {console.log('estamos en la primera validacion')
       setErrors({
       ...errors,
-      [e.target.name] : `Este campo es obligatorio`
+      [e.target.name] : <p className='text-danger mt-3'>*Este campo es obligatorio*</p>
     });
   }else if (e.target.name === "email" && 
   !validationServices.validarEmail(e.target)
@@ -88,12 +88,13 @@ const handleOnSubmit = e => {
 
   return (
     <>
-    <h1>Estamos desde el register</h1>
-    <Link to="/">volver al home </Link>
-    <Container id='main-container' className='d-grid h-100 container-xl'>
-    <Form onSubmit={handleOnSubmit}className='form-styles w-100 text-center' id='sign-form'>
-     <Form.Group>
-      <FormLabel className='mt-3'>Nombre</FormLabel>
+    <Container id='main-container' className='container '>
+      <div className='row'>
+        <div className='col-lg-6 form mt-5'>
+    <Form onSubmit={handleOnSubmit} id='sign-form'>
+      <h1 className='mb-5 text-center bg-dark p-2 text-light rounded-pill'>Registrarse</h1>
+     <Form.Group className='mb-4'>
+      <FormLabel className='lead fs-5' >Nombre</FormLabel>
       <FormControl 
       type="text"
       name='username'
@@ -101,22 +102,24 @@ const handleOnSubmit = e => {
       onChange={handleOnChange}
       onBlur={handleOnBlur}
       minLength='4'
+      placeholder='Ingrese el nombre'
       />
       <p id='paragraph-styles'>{errors.username}</p>
     </Form.Group>   
-      <FormGroup>
-      <FormLabel>Apellido</FormLabel>
+      <FormGroup className='mt-3 mb-4'>
+      <FormLabel className='lead fs-5'>Apellido</FormLabel>
       <FormControl 
       type="text"
       name='lastname'
       value={form.lastname}
       onChange={handleOnChange}
       onBlur={handleOnBlur}
+      placeholder='Ingrese el Apellido'
       />
       <p id='paragraph-styles'>{errors.lastname}</p>
       </FormGroup>
-      <FormGroup>
-       <FormLabel>Email</FormLabel>
+      <FormGroup className='mt-3 mb-4'>
+       <FormLabel className='lead fs-5'>E-mail</FormLabel>
       <FormControl 
       type="text"
       name='email'
@@ -124,11 +127,12 @@ const handleOnSubmit = e => {
       onChange={handleOnChange}
       onBlur={handleOnBlur}
       maxLength='30'
+      placeholder='Ingrese el E-mail'
       />
       <p id='paragraph-styles'>{errors.email}</p>
       </FormGroup>  
-      <FormGroup>
-       <FormLabel>Contraseña</FormLabel>
+      <FormGroup className='mt-3 mb-4'>
+       <FormLabel className='lead fs-5'>Contraseña</FormLabel>
        
       <FormControl 
       type="password"
@@ -138,16 +142,14 @@ const handleOnSubmit = e => {
       onBlur={handleOnBlur}
       minLength='8'
       maxLength='30'
+      placeholder='Ingrese la contraseña'
       />
 
-      <button className='input-group-text bg-dark text-light'>
-        show
-      </button>
       <p id='paragraph-styles'>{errors.password}</p>
       </FormGroup> 
 
-      <FormGroup>
-       <FormLabel>Confirmar contraseña</FormLabel> 
+      <FormGroup className='mt-3 mb-4'>
+       <FormLabel className='lead fs-5'>Confirmar contraseña</FormLabel> 
       <FormControl 
       type="password"
       name='passwordConfirm'
@@ -156,28 +158,31 @@ const handleOnSubmit = e => {
       onBlur={handleOnBlur}
       minLength='8'
       maxLength='30'
+      placeholder='Repita la contraseña'
       />
       <p id='paragraph-styles'>{errors.passwordConfirm}</p>
       </FormGroup>
 
-      <FormGroup>
-      <FormLabel>Número de telefono</FormLabel>
+      <FormGroup className='mt-3 mb-4'>
+      <FormLabel className='lead fs-5'>Número de telefono</FormLabel>
         <FormControl  
       type="number"
       name='phoneNumber'
       value={form.phoneNumber}
       onChange={handleOnChange}
       onBlur={handleOnBlur}
-      placeholder="+54"
+      placeholder='Ingrese su numero de telefono'
       />
       <p id='paragraph-styles'>{errors.phoneNumber}</p>
       </FormGroup>
-   
+   <div className='text-center'>
       <Button disabled={Object.values(form).some(
         (value) => value === '' || value === 0
-      )} className='btn btn-info mb-3'id='button-styles' type="submit">Registrar</Button>
+      )} className='btn btn-dark mt-4  fs-4 'id='button-styles' type="submit">REGISTRARSE</Button> </div>
       <Link to='/' />
     </Form>
+    </div>
+    </div>
     </Container>
     </>
   )

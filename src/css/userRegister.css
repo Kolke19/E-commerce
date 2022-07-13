@@ -1,48 +1,6 @@
-*{
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-   
-}
-
-body {
-    min-height: 100vh;
-}
-
-#sign-form{
-    max-width: 600px; 
-   color: #000000;
-}
-#paragraph-styles {
-    color: red;
-}
-
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-    /* display: none; <- Crashes Chrome on hover */
-    -webkit-appearance: none;
-    margin: 0;
-    /* <-- Apparently some margin are still there even though it's hidden */
-}
-
-#main-container {
-    place-items: center center;
-    background-color: #f7f7f7;
-    max-width: 700px;
-    border-bottom-left-radius: 0.5rem ;
-    border-bottom-right-radius: 0.5rem;
-    border-top-right-radius:0.5rem ;
-    border-top-left-radius: 0.5rem;
-    border:1px solid; ;
-    
-}
-
-
-.phoneNumber input{
-    -webkit-appearance: none !important;
-    margin: 0;
-}
-#button-styles{
-    color: #f7f7f7 !important;
-    background-color: #00a0e1;
-}
+.form{
+background-color: #fff;
+padding: 4rem;
+box-shadow: 0 0px 12px rgb(172, 172, 172);
+border-radius: 2rem;
+margin: 0 auto;}
