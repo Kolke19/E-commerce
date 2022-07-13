@@ -7,7 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
-
+import Card from "../components/card";
 
 
 const SearchNavbar = () => {
@@ -55,14 +55,20 @@ const SearchNavbar = () => {
         }    
     return (
         <div className="containerInput">
+            <div className="container d-flex mt-5">
             <input 
-            className="form-control inputBuscar"
+            className="form-control inputBuscar fs-4"
             value={search}
             placeholder="busqueda por nombre o marca"
             onChange={handleChange}
             />
-            <button className="btn btn-success" onClick={handleSubmit}><FontAwesomeIcon icon={faSearch} /></button>
-            <div >
+            <button className="btn btn-success" onClick={handleSubmit}><FontAwesomeIcon icon={faSearch} /></button></div>
+            <div className="container text-center">
+                <div className="row text-center">
+            {products.map( e => <Card key={e._id} img={e.image} name={e.name} price={e.price} id={e._id} brand={e.brand}/>)}
+            </div>
+            </div>
+ {/*            <div >
                 <table className="table table-sm table-bordered">
                 <thead>
                     <tr>
@@ -88,7 +94,7 @@ const SearchNavbar = () => {
                 ))}
                 </tbody>
                 </table>
-            </div>
+            </div> */}
         </div>
       );
 }

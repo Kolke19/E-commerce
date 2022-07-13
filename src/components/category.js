@@ -17,14 +17,14 @@ const Category = () => {
   function getCategory(products, categoria) {
     products = products.filter((e) => e.category === categoria);
     return products.map((e) => (
-      <Card key={e.id} img={e.image} name={e.name} price={e.price} id={e._id} />
+      <Card key={e.id} img={e.image} name={e.name} price={e.price} id={e._id} brand={e.brand}/>
     ));
   }
 
  function getOffert(products) {
     products = products.filter((e) => e.isInOffer === true);
     return products.map((e) => (
-      <Card key={e.id} img={e.image} name={e.name} price={e.price} id={e._id} featured={e.isInOffer}/>
+      <Card key={e.id} img={e.image} name={e.name} price={e.price} id={e._id} featured={e.isInOffer} brand={e.brand}/>
     ));
   } 
 

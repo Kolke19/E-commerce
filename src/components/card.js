@@ -2,7 +2,7 @@ import "./card.css";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-const Card = ({ img, name, price, id, featured }) => {
+const Card = ({ img, name, price, id, featured, brand }) => {
   const idProduct = `/producto#${id}`;
 
   const [featuredcar, setFeaturedCard] = useState(false);
@@ -28,8 +28,9 @@ const Card = ({ img, name, price, id, featured }) => {
               ></img>
             </header>
             <main>
-              <p className="card-main-tittle">{name}</p>
-              <p className="card-main-price">
+              <p className="card-main-tittle fw-bold">{name}</p>
+              <p>Modelo : {brand}</p>
+              <p className="card-main-price fs-2 text-light bg-success">
                 <strong>$ {price}</strong>
               </p>
             </main>
@@ -51,8 +52,9 @@ const Card = ({ img, name, price, id, featured }) => {
               ></img>
             </header>
             <main>
-              <p className="card-main-tittle">{name}</p>
-              <p className="card-main-price">
+              <p className="card-main-tittle fw-bold">{name}</p>
+              <p>Modelo : {brand}</p>
+              <p className="card-main-price fs-2 text-light bg-success">
                 <strong>$ {price}</strong>
               </p>
             </main>
