@@ -8,18 +8,18 @@ const TemplateProduct = () => {
 
   const getProduct = async () => {
     const UrlProduct = window.location.hash.slice(1);
-    const URL = `http://localhost:4000/Articulos/${UrlProduct}`;
+    const URL = `http://localhost:4000/api/v1/products/${UrlProduct}`;
 
     const res = await fetch(URL);
     const data = await res.json();
-    setProduct(data);
+    setProduct(data.productById);
   };
-  const UrlCategoria = `/categoria#${product.categoria}`;
-  console.log(product);
+  const UrlCategoria = `/categoria#${product.category}`;
 
   useEffect(() => {
     getProduct();
   }, []);
+
 
   console.log(window.location);
 
@@ -30,7 +30,7 @@ const TemplateProduct = () => {
           <div className="col-12 col-md-6 col-lg-6 col-xl-4  text-center">
             <img
               className="product-img img-fluid"
-              src={product.img}
+              src={product.image}
               alt="product"
             />
           </div>
@@ -42,7 +42,7 @@ const TemplateProduct = () => {
               <Link to={UrlCategoria}>
                 <span className="fw-bold text-primary">
                   {" "}
-                  {product.categoria}
+                  {product.category}
                 </span>
               </Link>
             </p>

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Card from "../components/card";
 
 const TemplateCategory = () => {
-  const URL = "http://localhost:4000/Articulos";
+  const URL = "http://localhost:4000/api/v1/products";
   const categoryKey = window.location.hash.slice(1);
 
   const [products, setProducts] = useState([]);
@@ -10,13 +10,13 @@ const TemplateCategory = () => {
   const getData = async () => {
     const res = await fetch(URL);
     const data = await res.json();
-    setProducts(data);
+    setProducts(data.products);
   };
 
   function getCategory(products, categoria) {
-    products = products.filter((e) => e.categoria === categoria);
+    products = products.filter((e) => e.category === categoria);
     return products.map((e) => (
-      <Card key={e.id} img={e.img} name={e.name} price={e.price} id={e.id} featured={e.destacado} />
+      <Card key={e._id} img={e.image} name={e.name} price={e.price} id={e._id} isInOffer={e.isInOffer} />
     ));
   }
 

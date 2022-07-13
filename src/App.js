@@ -18,7 +18,7 @@ import CartShopping from './components/layout/CartShopping';
 import OrderState from './context/OrderState';
 // importaciones de matias
 import TemplateProduct from "./pages/templateProduct";
-import Home from './pages/home';
+import Home from './pages/home2';
 import TemplateCategory from "./pages/templateCategory";
 import Layout from "./components/Layout";
 import AdminPanel from "./pages/adminpanel";
