@@ -11,7 +11,7 @@ import './Apps.css';
 
 //backend context 
 // import Private from './pages/Private';
-// import PrivateRoute from './routes/PrivateRoute';
+import PrivateRoute from './routes/PrivateRoute';
 import { useContext, useEffect, useState } from 'react';
 import SearchNavbar from './pages/SearchNavbar';
 import CartShopping from './components/layout/CartShopping';
@@ -52,12 +52,12 @@ function App() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/profile" element={<UserPanel />} />
-                <Route path="/wp-admin" element={<AdminPanel />} />
-              {/* <Route path='/private'element={
+                <Route path='/wp-admin'element={<AdminPanel/>}/> 
+              <Route path='/private'element={
                 <PrivateRoute>
-                  <Private/>
+                
                 </PrivateRoute>
-                } /> */}
+                } />
            </Routes>
          </Layout>
          </OrderState>

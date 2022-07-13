@@ -1,10 +1,13 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import AuthContext from "../context/AuthContext";
 import UserRow from "./userRow";
 
 const ListarUser = () =>{
 
-    const URL = "http://localhost:4000/Usuarios";
+   const { updateUser} = useContext(AuthContext)
+
+    const URL = "http://localhost:4000/api/v1/users";
 
 
 
@@ -19,40 +22,45 @@ const ListarUser = () =>{
   
     useEffect(() => {
       getData().then((res) => {
-        setListUsers(res.data);
+        setListUsers(res.data.user);
       });
     }, []);
 
 
+
+
     const [getID , setGetId] = useState();
     const [formUser,setFormUser] = useState({
-      name: "",
+      username: "",
+      lastname: "",
       email: "",
-      admin: "",
-      contraseña : "",
-      img:""
+      phoneNumber: 0,
+      isAdmin: true,
+      role: ""
     })
 
     const testUser = async (id) =>{
-      const res = await axios.get(`${URL}/${id}`);
+     const res = await axios.get(`${URL}/${id}`);
       setFormUser({
-            name: res.data.name,
+            username: res.data.username,
+            lastname: res.data.lastname,
             email: res.data.email,
-            admin: !res.data.admin,
-            contraseña: res.data.contraseña,
-            img: res.data.img,
+            phoneNumber: res.data.phoneNumber,
+            isAdmin: !res.data.userById.isAdmin,
+            role: res.data.role
           });  
+       
         }
 
     const handleEditUsers = async (e) => {
       e.preventDefault();
-     const response = await axios.put(`${URL}/${getID}`, formUser);
-      window.location.reload(); 
+     updateUser(getID, formUser)
+    
     };
  
 
     return(<>
-       <UserRow setID={setGetId} listUsers={listUsers} testUser={testUser}/>
+   <UserRow setID={setGetId} listUsers={listUsers} testUser={testUser}/> 
       <div
         className="modal fade"
         id="exampleModal5"

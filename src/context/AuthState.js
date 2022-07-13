@@ -24,7 +24,7 @@ const AuthState = ({children}) => {
     const initialState = {
         token: localStorage.getItem('token'),
         inAuth: false,
-        user: null,
+        user:{},
         loading: true//mostrando un elemento de carga..
     }
     const [state, dispatch] = useReducer (AuthReducer, initialState);
@@ -107,6 +107,15 @@ const login = async (data) => {
         throw error;
     }
    }
+   const updateUser = async (id,data) => {
+    try {
+        const res = await clientAxios.put(`http://localhost:4000/api/v1/users/${id}`, data);
+        res && await getUser();
+        
+    } catch (error) {
+        throw error;
+    }
+   }
 
 
 
@@ -124,7 +133,8 @@ const logout = () =>{
             createProduct,
             deleteProduct,
             getProducts,
-            updateProduct
+            updateProduct,
+            updateUser
         }}>
             {children}
 

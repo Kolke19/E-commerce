@@ -27,17 +27,17 @@ const UserRow = ({setID,listUsers,testUser}) =>{
             </thead>
             <tbody>
               {listUsers.map((e) => (
-            <tr key={e.id}>
-            <th>{e.id}</th>
-            <td>{e.name}</td>
+            <tr key={e._id}>
+            <th>{e._id}</th>
+            <td>{e.username}</td>
             <td>{e.email}</td>
-            <td>{e.admin.toString()}</td>
+            <td>{e.isAdmin.toString()}</td>
             <td>  <button
                 className="btn btn-warning btn_table "
                 onClick={handleGetId}
               >
-               <i id={e.id} className="bi bi-star-fill fs-5" data-bs-toggle="modal"
-                data-bs-target="#exampleModal5" onClick={()=> testUser(e.id)}></i>
+               <i id={e._id} className="bi bi-star-fill fs-5" data-bs-toggle="modal"
+                data-bs-target="#exampleModal5" onClick={()=> testUser(e._id)}></i>
               </button></td>
           </tr>
               ))}

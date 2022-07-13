@@ -1,10 +1,11 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import AuthContext from "../context/AuthContext";
 
 const InfoUser = () => {
-  let logged = JSON.parse(localStorage.getItem("UserLogged"));
-
-  const URL = `http://localhost:4000/Usuarios/${logged.id}`;
+  let logged = JSON.parse(localStorage.getItem("userLogged"));
+  const { updateUser } = useContext(AuthContext);
+  const URL = `http://localhost:4000/api/v1/users/${logged._id}`;
 
   const getData = async () => {
     const res = await axios.get(URL);
@@ -12,21 +13,21 @@ const InfoUser = () => {
   };
 
   const [userLogged, setUserLogged] = useState({
-    name: "",
+    username: "",
+    lastname: "",
     email: "",
-    admin: "",
-    contraseña: "",
-    img: "",
+    phoneNumber: 0,
   });
 
   const [errorEdit, setErrorEdit] = useState(null);
 
   useEffect(() => {
     getData().then((res) => {
-      setUserLogged(res.data);
+      setUserLogged(res.data.userById);
     });
   }, []);
 
+  console.log(userLogged);
   const handleChangeUser = (e) => {
     setUserLogged({
       ...userLogged,
@@ -37,9 +38,10 @@ const InfoUser = () => {
   const handleEditUser = async (e) => {
     e.preventDefault();
     if (
-      userLogged.name === "" ||
+      userLogged.username === "" ||
+      userLogged.lastname === "" ||
       userLogged.email === "" ||
-      userLogged.img === ""
+      userLogged.phoneNumber === 0
     ) {
       setErrorEdit(
         <p className="text-danger text-center mt-3">
@@ -49,10 +51,9 @@ const InfoUser = () => {
       return;
     }
 
-    const response = await axios.put(URL, userLogged);
-    window.location.reload();
+    updateUser(logged._id, userLogged);
+    // window.location.href ="/profile"
   };
-
 
   return (
     <>
@@ -60,14 +61,16 @@ const InfoUser = () => {
         <div className="row">
           <div className="col-12 col-lg-8 profile_info p-4">
             <div className="d-flex align-items-center">
-              <img
+            {/*   <img
                 className="img_profile me-3"
                 src={userLogged.img}
-                alt="Img_Profile"
+                alt="Profile"
                 data-bs-toggle="modal"
                 data-bs-target="#exampleModal2"
-              />
-              <h2 className="fs-4">{userLogged.name}</h2>
+              /> */}
+              <h2 className="fs-4">
+                {userLogged.username} {userLogged.lastname}
+              </h2>
             </div>
           </div>
         </div>
@@ -78,7 +81,9 @@ const InfoUser = () => {
           <div className="col-12 col-lg-8 profile_info p-3 mt-4">
             <div>
               <p className="fw-bold fs-5">Nombre</p>
-              <p className="lead info_user">{userLogged.name}</p>
+              <p className="lead info_user">
+                {userLogged.username} {userLogged.lastname}
+              </p>
               <hr />
             </div>
             <div>
@@ -87,8 +92,8 @@ const InfoUser = () => {
               <hr />
             </div>
             <div>
-              <p className="fw-bold fs-5">Foto perfil</p>
-              <p className="lead info_user">{userLogged.img}</p>
+              <p className="fw-bold fs-5">Telefonol</p>
+              <p className="lead info_user">{userLogged.phoneNumber}</p>
               <hr />
             </div>
             <div className="text-end mt-4 mb-3">
@@ -103,18 +108,22 @@ const InfoUser = () => {
           </div>
         </div>
       </div>
-      
 
       <div className="container mt-5">
         <div className="row">
           <div className="col-12 col-lg-8 profile_info p-3">
             <div className="d-flex align-items-center">
-                <h5 className="fs-5 change-password"  data-bs-toggle="modal"
-                data-bs-target="#exampleModal3">Cambiar contraseña</h5>
-                </div>
-                </div>
-                </div>
-                </div>
+              <h5
+                className="fs-5 change-password"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal3"
+              >
+                Cambiar contraseña
+              </h5>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <div
         className="modal fade"
@@ -140,10 +149,20 @@ const InfoUser = () => {
                 <div>
                   <label className="form-label">Nombre</label>
                   <input
-                    name="name"
+                    name="username"
                     className="form-control"
                     type="text"
-                    value={userLogged.name}
+                    value={userLogged.username}
+                    onChange={handleChangeUser}
+                  />
+                </div>
+                <div>
+                  <label className="form-label mt-3">Apellido</label>
+                  <input
+                    name="lastname"
+                    className="form-control"
+                    type="text"
+                    value={userLogged.lastname}
                     onChange={handleChangeUser}
                   />
                 </div>
@@ -158,12 +177,12 @@ const InfoUser = () => {
                   />
                 </div>
                 <div>
-                  <label className="form-label mt-3">Elegir foto de perfil</label>
+                  <label className="form-label mt-3">Telefono</label>
                   <input
-                    name="img"
+                    name="phoneNumber"
                     className="form-control"
                     type="text"
-                    value={userLogged.img}
+                    value={userLogged.phoneNumber}
                     onChange={handleChangeUser}
                   />
                 </div>
@@ -184,13 +203,11 @@ const InfoUser = () => {
               >
                 Guardar cambios
               </button>
-              {(errorEdit)}
+              {errorEdit}
             </div>
           </div>
         </div>
       </div>
-
-
 
       <div
         className="modal fade"
@@ -240,7 +257,7 @@ const InfoUser = () => {
               >
                 Guardar cambios
               </button>
-              {(errorEdit)}
+              {errorEdit}
             </div>
           </div>
         </div>
@@ -294,7 +311,7 @@ const InfoUser = () => {
               >
                 Guardar cambios
               </button>
-              {(errorEdit)}
+              {errorEdit}
             </div>
           </div>
         </div>
