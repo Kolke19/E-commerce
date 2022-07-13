@@ -3,14 +3,11 @@ import AuthContext from "../context/AuthContext";
 
 import { useContext } from "react";
 
-const ProductRow = ({product,handleGetId,setGetIDEdit, setFormEdit}) =>{
+const ProductRow = ({product,handleGetId,setGetIDEdit, setFormEdit,prueba}) =>{
 const {updateProduct} = useContext(AuthContext);
 
     const handleGetIdEdit =  () => {
         setGetIDEdit(product._id);
-        setFormEdit(product)
-        updateProduct();
-        console.log("product A", product)
       };
 
       // useEffect(() => {
@@ -41,6 +38,7 @@ const {updateProduct} = useContext(AuthContext);
                       <i
                         className="bi bi-pencil fs-5"
                         id={product._id}
+                        onClick={()=>prueba(product._id)}
                         data-bs-toggle="modal"
                         data-bs-target="#exampleModal3"
                       ></i>

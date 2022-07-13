@@ -65,7 +65,7 @@ const login = async (data) => {
       localStorage.setItem('token', response.data.token);
        localStorage.setItem('userLogged',JSON.stringify(response.data.data.user) );
        console.log(response.data.data.user);
-
+     
     } catch (error) {
       throw error;
     }
@@ -90,6 +90,7 @@ const login = async (data) => {
 
  const deleteProduct = async (id) => {
     try {
+        console.log("llega", clientAxios);
         const res = await clientAxios.delete(`http://localhost:4000/api/v1/products/${id}`);
         res && await getProducts();
         
@@ -97,9 +98,9 @@ const login = async (data) => {
         throw error;
     }
    }
-    const updateProduct = async (id) => {
+    const updateProduct = async (id,data) => {
     try {
-        const res = await clientAxios.put(`http://localhost:4000/api/v1/products/${id}`);
+        const res = await clientAxios.put(`http://localhost:4000/api/v1/products/${id}`, data);
         res && await getProducts();
         
     } catch (error) {

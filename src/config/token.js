@@ -1,11 +1,21 @@
-import clientAxios from "./axios"
+// import clientAxios from "./axios"
 
+// const authToken = token => {
+//     if (token) {
+//         clientAxios.defaults.headers.common['authorization'] = `Bearer ${token}`
+//     } else {
+//         delete clientAxios.defaults.headers.common['authorization']
+//     }
+// }
+
+// export default authToken;
+
+import clientAxios from './axios';
 const authToken = token => {
-    if (token) {
-        clientAxios.defaults.headers.common['authorization'] = `Bearer ${token}`
-    } else {
-        delete clientAxios.defaults.headers.common['authorization']
-    }
+  if(token){
+    clientAxios.defaults.headers.common['authorization'] =`Bearer ${token}`;
+  }else{
+    delete clientAxios.defaults.headers.common['authorization'];
+  }
 }
-
-export default authToken;
+export default authToken;   

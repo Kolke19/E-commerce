@@ -66,6 +66,7 @@ const ListarProducts = () => {
     // } 
     console.log(form);
     createProduct(form);
+    window.location.href ="/wp-admin"
   }
 
 
@@ -87,7 +88,7 @@ const ListarProducts = () => {
     console.log('c2', getIDDelete)
     deleteProduct(getIDDelete)
      console.log("jorgito gay",getIDDelete)
-    window.location.reload();
+    // window.location.reload();
   };
   // funciones para delete y update
 
@@ -141,9 +142,25 @@ const handleEdit = async (e) => {
    
    
     // const response = await axios.put(`${URL}/${getIDEdit}`, formEdit);
+
+    updateProduct(getIDEdit, formEdit)
     window.location.reload();
   };
  
+const getInfoForm = async (id) =>{
+  const res = await axios.get(`${URL}/${id}`); 
+ setFormEdit({
+    name: res.data.productById.name,
+    image: res.data.productById.image,
+    brand: res.data.productById.brand,
+    description: res.data.productById.description,
+    price: res.data.productById.price,
+    stock: res.data.productById.stock,
+    isInOffer: res.data.productById.isInOffer,
+    category :res.data.productById.category
+  })  
+console.log(res.data.productById)
+}
 
   return (
 
@@ -180,7 +197,7 @@ const handleEdit = async (e) => {
             <tbody>
             {listProduct.map((e) => (
               
-            <ProductRow key={e._id} product={e} setFormEdit={setFormEdit} handleGetId={handleGetId}  setGetIDEdit={setGetIDEdit}  />
+            <ProductRow key={e._id} product={e} setFormEdit={setFormEdit} handleGetId={handleGetId}  setGetIDEdit={setGetIDEdit} prueba={getInfoForm}  />
             ))} 
             </tbody>
           </table>
@@ -385,7 +402,7 @@ const handleEdit = async (e) => {
               ></button>
             </div>
             <div className="modal-body">
-              <form>
+            <form onSubmit={handleEdit}>
                 <label className="form-label">Nombre</label>
                 <input
                   name="name"
@@ -395,12 +412,32 @@ const handleEdit = async (e) => {
                   value={formEdit.name}
                   onChange={handleChangeEdit}
                 />
+
+                <label className="form-label">Marca</label>
+                <input
+                  name="brand"
+                  className="w-100 mb-3 form-control"
+                  type="text"
+                  placeholder="Ingresa el nombre del producto"
+                  value={formEdit.brand}
+                  onChange={handleChangeEdit}
+                />
+                  <label className="form-label">Imagen</label>
+                <input
+                  name="image"
+                  className="w-100 mb-3 form-control"
+                  type="text"
+                  placeholder="Ingresa el nombre del producto"
+                  value={formEdit.image}
+                  onChange={handleChangeEdit}
+                />
+
                 <label className="form-label">Precio</label>
                 <input
                   name="price"
                   className="w-100 mb-3 form-control"
                   type="number"
-                  placeholder="Ingresa el precio del producto"
+                  placeholder="Ingresa la imagen"
                   value={formEdit.price}
                   onChange={handleChangeEdit}
                 />
@@ -418,7 +455,7 @@ const handleEdit = async (e) => {
                   <option>Fuente</option>
                   <option>Joystick</option>
                 </select>
-                <label className="form-label">Esta en oferta</label>
+                <label className="form-label">En oferta</label>
                 <select
                   name="isInOffer"
                   className="form-select  mb-3"
@@ -426,8 +463,8 @@ const handleEdit = async (e) => {
                   onChange={handleChangeEdit}
                 >
                   <option>Elige una opcion</option>
-                  <option>false</option>
-                  <option>true</option>
+                  <option >false</option>
+                  <option >true</option>
                 </select>
                 <label className="form-label">Descripcion</label>
                 <input
@@ -438,20 +475,20 @@ const handleEdit = async (e) => {
                   value={formEdit.description}
                   onChange={handleChangeEdit}
                 />
-                <label className="form-label">Enlace de imagen</label>
+                <label className="form-label">stock</label>
                 <input
-                  name="image"
+                  name="stock"
                   className="w-100 mb-3 form-control mb-3"
-                  type="text"
-                  placeholder="Ingrese el enlace de la imagen del producto"
-                  value={formEdit.image}
+                  type="number"
+                  placeholder="Ingrese el stock del producto"
+                  value={formEdit.stock}
                   onChange={handleChangeEdit}
                 />
                 {error}
                 <button
                   type="submit"
                   className="btn btn-success"
-                  onClick={handleEdit}
+                  
                 >
                   Guardar
                 </button>

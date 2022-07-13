@@ -12,7 +12,7 @@ import './Apps.css';
 //backend context 
 // import Private from './pages/Private';
 // import PrivateRoute from './routes/PrivateRoute';
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import SearchNavbar from './pages/SearchNavbar';
 import CartShopping from './components/layout/CartShopping';
 import OrderState from './context/OrderState';
@@ -26,11 +26,12 @@ import Login from "./components/Login";
 import UserPanel from "./pages/userpanel";
 import Register from "./pages/Register";
 import AuthState from "./context/AuthState";
+import AuthContext from "./context/AuthContext";
 // import ProducList from './components/layout/ProducList';
 
 
 function App() {
-  const [show, setShow] = useState(true);
+  
   return (
     <>
     <AuthState>
