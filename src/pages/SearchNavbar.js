@@ -9,94 +9,85 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import Card from "../components/card";
 
-
 const SearchNavbar = () => {
+  const [products, SetProducts] = useState([]);
 
-    const [products, SetProducts] = useState([]); 
+  const [tableProducts, setTableProducts] = useState([]);
 
-    const [tableProducts, setTableProducts] = useState([]); 
+  const [search, setSearch] = useState("");
 
-    const [search, setSearch] = useState("")
-
-    const getProducts = async () => {
-        try {
-            const response = await axios.get('http://localhost:4000/api/v1/products');
-            SetProducts(response.data.products);
-            setTableProducts(response.data.products);
-           
-        } catch (error) {
-            throw error;
-        }
+  const getProducts = async () => {
+    try {
+      const response = await axios.get("http://localhost:4000/api/v1/products");
+      SetProducts(response.data.products);
+      setTableProducts(response.data.products);
+    } catch (error) {
+      throw error;
     }
-    useEffect (() => {
-        getProducts();
-    }, [])
+  };
+  useEffect(() => {
+    getProducts();
+  }, []);
 
-    const handleChange = (e) => {
-        setSearch(e.target.value);
-        
-    };
+  const handleChange = (e) => {
+    setSearch(e.target.value);
+  };
 
-    const filterProducts=(searchResults)=>{
-        let results = tableProducts.filter((element)=>{
-            if (element.name.toString().toLowerCase().includes(searchResults.toLowerCase())
-            || element.category.toString().toLowerCase().includes(searchResults.toLowerCase())
-            || element.brand.toString().toLowerCase().includes(searchResults.toLowerCase())
-            ) {
-                return element;
-            }
-        });
-        SetProducts(results);
-    } 
+  const filterProducts = (searchResults) => {
+    let results = tableProducts.filter((element) => {
+      if (
+        element.name
+          .toString()
+          .toLowerCase()
+          .includes(searchResults.toLowerCase()) ||
+        element.category
+          .toString()
+          .toLowerCase()
+          .includes(searchResults.toLowerCase()) ||
+        element.brand
+          .toString()
+          .toLowerCase()
+          .includes(searchResults.toLowerCase())
+      ) {
+        return element;
+      }
+    });
+    SetProducts(results);
+  };
 
-        const handleSubmit = (e) => {
-            e.preventDefault();
-            filterProducts(search);
-        }    
-    return (
-        <div className="containerInput">
-            <div className="container d-flex mt-5">
-            <input 
-            className="form-control inputBuscar fs-4"
-            value={search}
-            placeholder="busqueda por nombre o marca"
-            onChange={handleChange}
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    filterProducts(search);
+  };
+  return (
+    <div className="containerInput">
+      <div className="container d-flex mt-5">
+        <input
+          className="form-control inputBuscar fs-4"
+          value={search}
+          placeholder="busqueda por nombre o marca"
+          onChange={handleChange}
+        />
+        <button className="btn btn-success" onClick={handleSubmit}>
+          <FontAwesomeIcon icon={faSearch} />
+        </button>
+      </div>
+      <div className="container text-center">
+        <div className="row text-center">
+          {products.map((e) => (
+            <Card
+              key={e._id}
+              img={e.image}
+              name={e.name}
+              price={e.price}
+              id={e._id}
+              brand={e.brand}
             />
-            <button className="btn btn-success" onClick={handleSubmit}><FontAwesomeIcon icon={faSearch} /></button></div>
-            <div className="container text-center">
-                <div className="row text-center">
-            {products.map( e => <Card key={e._id} img={e.image} name={e.name} price={e.price} id={e._id} brand={e.brand}/>)}
-            </div>
-            </div>
- {/*            <div >
-                <table className="table table-sm table-bordered">
-                <thead>
-                    <tr>
-                    <th>ID</th>
-                    <th>marca</th>
-                    <th>categoria</th>
-                    <th>descripcion</th>
-                    <th>nombre</th>
-                    </tr>
-                </thead>
-                <tbody>
-                { products &&
-                products.map((product) => (
-                    
-                    <tr key={product._id}>
-                        <td>{product._id}</td>
-                        <td>{product.brand}</td>
-                        <td>{product.category}</td>
-                        <td>{product.description}</td>
-                        <td>{product.name}</td>
-                        
-                    </tr>
-                ))}
-                </tbody>
-                </table>
-            </div> */}
+          ))}
         </div>
-      );
-}
- 
+      </div>
+    </div>
+  );
+};
+
 export default SearchNavbar;

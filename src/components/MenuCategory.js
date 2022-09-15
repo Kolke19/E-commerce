@@ -4,9 +4,8 @@ import "./MenuCategory.css";
 const MenuCategory = () => {
   return (
     <>
-     
       <section className="container menu_category">
-      <hr className="mb-5"/>
+        <hr className="mb-5" />
         <div className="row d-flex justify-content-center">
           <div className="col-12 d-flex flex-column align-items-center justify-content-center menu_category_item">
             <Link to="/categoria#Mouse">

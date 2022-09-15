@@ -123,7 +123,6 @@ const Header = () => {
                     aria-expanded="false"
                   >
                     <div className="user_Data">
-                   <img className="img_navbar d-inline me-2" src={logged.img} alt="photo_perfil"/>
                    <p className="user_name_navbar">{logged.username}</p>
                    </div>
                   </Link>

@@ -1,48 +1,35 @@
 import "./login.css";
 import logo from "../assets/img/Logo.png";
-import {useState, useContext, useEffect} from 'react';
-import {Link, useNavigate} from 'react-router-dom';
+import { useState, useContext, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 // import axios from "axios";
 const Login = () => {
   // const URL_API = "http://localhost:4000/Usuarios";
-  let logged = JSON.parse(localStorage.getItem('userLogged'));
-  if(logged){
-      window.location.href ="/"
+  let logged = JSON.parse(localStorage.getItem("userLogged"));
+  if (logged) {
+    window.location.href = "/";
   }
   const navigate = useNavigate();
-  const {login,isAuth} = useContext(AuthContext);
+  const { login, isAuth } = useContext(AuthContext);
   const [formLogin, setFormLogin] = useState({
     email: "",
     password: "",
   });
-  const {email,password} = formLogin
+  const { email, password } = formLogin;
   const [errors, setErrors] = useState({});
-  const [errorLogin, setErrorLogin] = useState(null)
+  const [errorLogin, setErrorLogin] = useState(null);
   const handleChangeLogin = (e) => {
-    setErrorLogin(null)
+    setErrorLogin(null);
     setFormLogin({
       ...formLogin,
       [e.target.name]: e.target.value,
     });
   };
-  // const handlesubmitLogin = async (e) => {
-  //   e.preventDefault();
-  //   const res = await axios.get(URL_API);
-  //   const data = res.data;
-  //   const currentUser = data.find(e => e.email === formLogin.email && e.password === formLogin.password)
-  //   if(currentUser){
-  //   localStorage.setItem("UserLogged", JSON.stringify(currentUser));
-  //   window.location.href="/wp-admin"
-  // }
-  // else{
-  //    setErrorLogin(<p className="text-danger fw-bold text-center mt-5 mb-3">Usuario o password incorrectos</p>)
-  // }
-  // };
-  const handlesubmitLogin = async (e)=>{
+  const handlesubmitLogin = async (e) => {
     e.preventDefault();
-    login(formLogin)
-  }
+    login(formLogin);
+  };
   const handleOnBlur = (e) => {
     if (e.target.value === "") {
       setErrors({
@@ -56,14 +43,12 @@ const Login = () => {
       });
     }
   };
-// useEffect(()=>{
-//   isAuth && navigate('/private')
-// },[isAuth])
-useEffect(()=>{
-  if(isAuth){
-    navigate('/');
-  }
-},[isAuth]);
+
+  useEffect(() => {
+    if (isAuth) {
+      navigate("/");
+    }
+  }, [isAuth]);
   return (
     <>
       <div className="container mt-5 text-center">
@@ -102,12 +87,8 @@ useEffect(()=>{
                   onBlur={handleOnBlur}
                   minLength="8"
                 />
-                {/* <p className="mt-3">
-                </p> */}
                 {errors.password && (
-                  <span className="text-danger fw-bold">
-                    {errors.password}
-                  </span>
+                  <span className="text-danger fw-bold">{errors.password}</span>
                 )}
                 <label to="floatingPassword">password</label>
               </div>
@@ -124,7 +105,7 @@ useEffect(()=>{
                 >
                   INGRESAR
                 </button>
-                {errorLogin }
+                {errorLogin}
               </div>
             </form>
           </div>

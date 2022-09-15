@@ -8,7 +8,7 @@ import SearchNavbar from "./pages/SearchNavbar";
 import OrderState from "./context/OrderState";
 // //PAGES
 import TemplateProduct from "./pages/templateProduct";
-import Home from "./pages/home2";
+import Home from "./pages/home";
 import TemplateCategory from "./pages/templateCategory";
 import Layout from "./components/Layout";
 import AdminPanel from "./pages/adminpanel";

@@ -49,35 +49,49 @@ const TemplateProduct = () => {
                 </span>
               </Link>
             </p>
-            <p>{product.descripcion}</p>
+            <p>{product.description}</p>
           </div>
-          {(logged) ?   <div className="col-12 text-end">
-            <h1 className=" mb-4 mt-3 display-5">
-              Precio:{" "}
-              <span className="text-success fw-bold">$ {product.price}</span>
-            </h1>
-        
-            <button className="btn btn-outline-dark fs-4 mt-3">
-              <i className="bi bi-basket"></i> Agregar al carrito
-            </button>
-            <button className="btn btn-dark ms-3 fs-4 btn-buy mt-3">
-              <i className="bi bi-coin"></i> Comprar
-            </button>
-          </div> :   <div className="col-12 text-end">
-            <h1 className=" mb-4 mt-3 display-5">
-              Precio:{" "}
-              <span className="text-success fw-bold">$ {product.price}</span>
-            </h1>
-            <Link to="/login">
-            <button className="btn btn-outline-dark fs-4 mt-3">
-              <i className="bi bi-basket"></i> Agregar al carrito
-            </button></Link>
-            <Link to="/login">
-            <button className="btn btn-dark ms-3 fs-4 btn-buy mt-3">
-              <i className="bi bi-coin"></i> Comprar
-            </button> </Link>
-          </div>}
-        
+          {logged ? (
+            <div className="col-12 text-end">
+              <h1 className=" mb-4 mt-3 display-5">
+                Precio:{" "}
+                <span className="text-success fw-bold">$ {product.price}</span>
+              </h1>
+              <div className="d-flex justify-content-end">
+              <button className="btn btn-outline-dark fs-4 mt-3">
+                <i className="bi bi-basket"></i> Agregar al carrito
+              </button>
+              <div>
+                <form action="http://localhost:5000/checkout" method="POST">
+                  <input type="hidden" name="title" value={product.name} />
+                  <input type="hidden" name="price" value={product.price} />
+                  <input
+                    type="submit"
+                    value="Comprar ahora"
+                    className="btn btn-dark fs-4 mt-3 ms-3"
+                  />
+                </form>
+                  </div>
+              </div> 
+            </div>
+          ) : (
+            <div className="col-12 text-end">
+              <h1 className=" mb-4 mt-3 display-5">
+                Precio:{" "}
+                <span className="text-success fw-bold">$ {product.price}</span>
+              </h1>
+              <Link to="/login">
+                <button className="btn btn-outline-dark fs-4 mt-3">
+                  <i className="bi bi-basket"></i> Agregar al carrito
+                </button>
+              </Link>
+              <Link to="/login">
+                <button className="btn btn-dark ms-3 fs-4 btn-buy mt-3">
+                  <i className="bi bi-coin"></i> Comprar
+                </button>{" "}
+              </Link>
+            </div>
+          )}
         </div>
         <div className="row mt-5">
           <div className="col-12">
@@ -111,7 +125,7 @@ const TemplateProduct = () => {
                   Este producto es genial me encanta!!!
                 </p>
               </div>
-            </div>      
+            </div>
           </div>
         </div>
         <div>
